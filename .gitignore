@@ -56,3 +56,7 @@ server/.DS_Store
 server/config/application.yml
 
 server/node_modules
+server/spec
+!server/spec/rails_helper.rb
+!server/spec/spec_helper.rb
+server/config/database.yml
