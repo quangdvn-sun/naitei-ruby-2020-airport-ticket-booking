@@ -1,0 +1,2 @@
+class FlightStatus < ApplicationRecord
+end

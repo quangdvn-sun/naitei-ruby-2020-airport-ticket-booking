@@ -10,6 +10,166 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_08_14_060113) do
 
+  create_table "airports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_airports_on_location_id"
+  end
+
+  create_table "booking_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "method_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bookings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "booking_name"
+    t.string "booking_phone"
+    t.text "booking_address"
+    t.integer "seat_number"
+    t.float "total_price"
+    t.bigint "customer_id", null: false
+    t.bigint "booking_status_id", null: false
+    t.bigint "payment_method_id", null: false
+    t.bigint "seat_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["booking_status_id"], name: "index_bookings_on_booking_status_id"
+    t.index ["customer_id"], name: "index_bookings_on_customer_id"
+    t.index ["payment_method_id"], name: "index_bookings_on_payment_method_id"
+    t.index ["seat_type_id"], name: "index_bookings_on_seat_type_id"
+  end
+
+  create_table "bookings_services", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "booking_id", null: false
+    t.bigint "service_id", null: false
+    t.index ["booking_id"], name: "index_bookings_services_on_booking_id"
+    t.index ["service_id"], name: "index_bookings_services_on_service_id"
+  end
+
+  create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "full_name"
+    t.string "email"
+    t.string "password"
+    t.text "address"
+    t.integer "age"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "flight_routes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "flight_duration"
+    t.float "base_price"
+    t.bigint "departure_id"
+    t.bigint "arrive_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["arrive_id"], name: "index_flight_routes_on_arrive_id"
+    t.index ["departure_id", "arrive_id"], name: "index_flight_routes_on_departure_id_and_arrive_id", unique: true
+    t.index ["departure_id"], name: "index_flight_routes_on_departure_id"
+  end
+
+  create_table "flight_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "flights", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.datetime "departure_day"
+    t.integer "normal_reserved_seat"
+    t.integer "business_reserved_seat"
+    t.bigint "plane_id", null: false
+    t.bigint "flight_routes_id", null: false
+    t.bigint "shift_id", null: false
+    t.bigint "flight_status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flight_routes_id"], name: "index_flights_on_flight_routes_id"
+    t.index ["flight_status_id"], name: "index_flights_on_flight_status_id"
+    t.index ["plane_id"], name: "index_flights_on_plane_id"
+    t.index ["shift_id"], name: "index_flights_on_shift_id"
+  end
+
+  create_table "locations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "sub_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["booking_id"], name: "index_notifications_on_booking_id"
+  end
+
+  create_table "payment_methods", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "method_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "plane_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "type"
+    t.integer "normal_seat_number"
+    t.integer "business_seat_number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "planes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.bigint "plane_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["plane_type_id"], name: "index_planes_on_plane_type_id"
+  end
+
+  create_table "seat_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "type"
+    t.float "price_rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.float "fee"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "shifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.integer "departure_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "staffs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "full_name"
+    t.string "user_name"
+    t.string "password"
+    t.boolean "is_admin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "airports", "locations"
+  add_foreign_key "bookings", "booking_statuses"
+  add_foreign_key "bookings", "customers"
+  add_foreign_key "bookings", "payment_methods"
+  add_foreign_key "bookings", "seat_types"
+  add_foreign_key "flights", "flight_routes", column: "flight_routes_id"
+  add_foreign_key "flights", "flight_statuses"
+  add_foreign_key "flights", "planes"
+  add_foreign_key "flights", "shifts"
+  add_foreign_key "notifications", "bookings"
+  add_foreign_key "planes", "plane_types"
 end
