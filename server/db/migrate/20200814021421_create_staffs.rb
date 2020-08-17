@@ -8,5 +8,6 @@ class CreateStaffs < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :staffs, :user_name, unique: true
   end
 end
