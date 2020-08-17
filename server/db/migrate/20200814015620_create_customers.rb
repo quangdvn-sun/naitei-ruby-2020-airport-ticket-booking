@@ -4,6 +4,7 @@ class CreateCustomers < ActiveRecord::Migration[6.0]
       t.string :full_name
       t.string :email
       t.string :password
+      t.string :phone
       t.text :address
       t.integer :age
 

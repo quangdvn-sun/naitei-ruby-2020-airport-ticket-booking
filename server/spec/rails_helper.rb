@@ -1,14 +1,14 @@
-require File.expand_path('../config/environment', __dir__)
-ENV['RAILS_ENV'] ||= 'test'
-require 'rspec/rails'
-require 'spec_helper'
+require File.expand_path("../config/environment", __dir__)
+ENV["RAILS_ENV"] ||= "test"
+require "rspec/rails"
+require "spec_helper"
 include ActiveJob::TestHelper
 
 FactoryBot::SyntaxRunner.class_eval do
   include ActionDispatch::TestProcess
 end
 
-abort('The Rails environment is running in production mode!') if Rails.env.production?
+abort("The Rails environment is running in production mode!") if Rails.env.production?
 
 ActiveRecord::Migration.maintain_test_schema!
 ActiveJob::Base.queue_adapter = :test
