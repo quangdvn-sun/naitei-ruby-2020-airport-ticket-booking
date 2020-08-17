@@ -25,7 +25,7 @@ AllCops:
     - "spec/**/*"
     - "script/rails"
     - "config/**/*"
-    - "app/views/**/*"
+    - "app/views/layouts/*"
     - "app/assets/**/*"
     - "app/javascript/**/*"
     - ".idea/**/*"
