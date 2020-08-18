@@ -1,0 +1,5 @@
+flights:
+  day_range: 1
+  flight_order: DESC
+  one_way: 1
+  round_trip: 2
