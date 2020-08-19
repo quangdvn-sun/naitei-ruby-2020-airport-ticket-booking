@@ -3,3 +3,10 @@ flights:
   flight_order: DESC
   one_way: 1
   round_trip: 2
+  max_seat: 100
+  min_seat: 9
+bookings:
+  normal_seat: 1
+  business_seat: 2
+  fixed_money: 2
+

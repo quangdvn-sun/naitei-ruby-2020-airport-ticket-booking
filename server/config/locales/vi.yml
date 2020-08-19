@@ -1,0 +1,6 @@
+vi:
+  flights:
+    error: "Loại chuyến bay không hợp lệ !!"
+    not_found: "Không tìm thấy chuyến bay !!"
+  bookings:
+    error: "Đã xảy ra lỗi khi đặt vé !!"
