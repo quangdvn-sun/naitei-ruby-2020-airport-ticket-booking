@@ -224,20 +224,16 @@ def count_total_price flight_id, seat_type_id
   base_price * price_rate
 end
 
-500.times do |n|
+500.times do
   customer_id = rand_booking_customer
   if customer_id
     customer = Customer.find_by id: customer_id
-    booking_email = customer.email
     booking_name = customer.full_name
-    booking_phone = customer.phone
-    booking_address = customer.address
   else
-    booking_email = "example#{n + 1}@gmail.com"
     booking_name = Faker::Name.name
-    booking_phone = Faker::PhoneNumber.phone_number
-    booking_address = "#{Faker::Address.city}, #{Faker::Address.country}"
   end
+  booking_nation = Faker::Address.country
+  booking_dob = rand(50.years).seconds.ago.to_time.to_s
   seat_type_id = rand(1..2)
   flight_id = rand(1..500)
   seat_number = rand_seat_number flight_id, seat_type_id
@@ -246,10 +242,9 @@ end
   booking_status_id = payment_method_id == 1 ? rand(1..2) : 2
 
   Booking.create!(customer_id: customer_id,
-    booking_email: booking_email,
     booking_name: booking_name,
-    booking_phone: booking_phone,
-    booking_address: booking_address,
+    booking_dob: booking_dob,
+    booking_nation: booking_nation,
     flight_id: flight_id,
     seat_type_id: seat_type_id,
     seat_number: seat_number,

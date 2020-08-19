@@ -9,7 +9,7 @@ class Api::V1::FlightsController < ApiController
 
       render_response @first_flights.size.positive? || @second_flights.size.positive?
     else
-      render json: {success: false, message: "Invalid flight type!!"}
+      render json: {success: false, message: I18n.t("flights.error")}
     end
   end
 
@@ -31,7 +31,7 @@ class Api::V1::FlightsController < ApiController
     if condition
       render :create
     else
-      render json: {success: false, message: "Flights not found !!"}
+      render json: {success: false, message: I18n.t("flights.not_found")}
     end
   end
 
