@@ -6,7 +6,7 @@ class Api::V1::BookingsController < ApiController
       @booking_count = @booking_response[:data].size
       render :create
     else
-      render json: {success: @booking_response[:success], message: @booking_response[:message]}
+      render json: {success: @booking_response[:success], message: @booking_response[:message]}, status: :bad_request
     end
   end
 

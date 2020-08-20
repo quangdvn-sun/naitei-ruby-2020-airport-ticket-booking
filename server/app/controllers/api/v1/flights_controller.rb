@@ -9,7 +9,7 @@ class Api::V1::FlightsController < ApiController
 
       render_response @first_flights.size.positive? || @second_flights.size.positive?
     else
-      render json: {success: false, message: I18n.t("flights.error")}
+      render json: {success: false, message: I18n.t("flights.error")}, status: :bad_request
     end
   end
 
