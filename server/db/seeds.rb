@@ -149,7 +149,7 @@ def rand_seat_reserved plane_id
   end
 end
 
-500.times do
+1000.times do
   departure_time = rand(3.months).seconds.from_now
   departure_day = Date.parse(departure_time.to_s)
   plane_id = rand(1..100)

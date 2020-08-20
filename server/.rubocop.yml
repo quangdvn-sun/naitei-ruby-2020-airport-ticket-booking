@@ -535,10 +535,6 @@ Rails/ActionFilter:
   Include:
     - app/controllers/**/*.rb
 
-Rails/HasAndBelongsToMany:
-  Include:
-    - app/models/**/*.rb
-
 Rails/ReadWriteAttribute:
   Include:
     - app/models/**/*.rb
