@@ -26,7 +26,6 @@ class BookingService
 
         final_bookings << booked
         booking_services = get_services(booking_details[index][:service_ids])
-        raise StandardError unless booking_services
 
         booked.services << booking_services
       end
@@ -81,7 +80,6 @@ class BookingService
   end
 
   def get_services ids
-    services = Service.search_by_id ids
-    services.presence || false
+    Service.search_by_id ids
   end
 end

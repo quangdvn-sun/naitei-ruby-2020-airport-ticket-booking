@@ -1,7 +1,6 @@
 class SearchFlightService
   def initialize params
     @type = params[:type]
-    @ticket_number = params[:ticket_number]
     @from = params[:locations][:from]
     @to = params[:locations][:to]
   end
