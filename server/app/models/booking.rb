@@ -2,14 +2,12 @@ class Booking < ApplicationRecord
   BOOKINGS_PARAMS = [:booking_total, booking_details: [:booking_name, :booking_dob, :booking_nation, :payment_method_id,
                      :seat_type_id, :flight_id, :customer_id, :total_price, service_ids: []]].freeze
 
+  has_and_belongs_to_many :services
   belongs_to :customer, optional: true
   belongs_to :booking_status
   belongs_to :payment_method
   belongs_to :seat_type
   belongs_to :flight
-  # rubocop:disable Rails/HasAndBelongsToMany
-  has_and_belongs_to_many :services
-  # rubocop:enable Rails/HasAndBelongsToMany
 
   validates :booking_name, presence: true
   validates :booking_dob, presence: true

@@ -22,15 +22,17 @@ class BookingService
     ActiveRecord::Base.transaction do
       booking_details.each_with_index do |booking, index|
         booked = create_new_booking booking
+        raise StandardError unless booked.save
+
         final_bookings << booked
         booking_services = get_services(booking_details[index][:service_ids])
-        raise NoMethodError unless booking_services
+        raise StandardError unless booking_services
 
         booked.services << booking_services
       end
     end
     final_bookings
-  rescue ActiveRecord::RecordInvalid, NoMethodError
+  rescue StandardError
     false
   end
 
@@ -43,7 +45,7 @@ class BookingService
     }
     booking_detail.merge! extra_info
 
-    Booking.create booking_detail.except :service_ids
+    Booking.new booking_detail.except :service_ids
   end
 
   def calculate_service_fees service_ids

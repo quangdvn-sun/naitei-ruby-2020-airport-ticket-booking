@@ -70,6 +70,10 @@ Lint/AssignmentInCondition:
   Description: "Don't use assignment in conditions."
   Enabled: false
 
+Rails/HasAndBelongsToMany:
+  Description: "Prefer has_many :through to has_and_belongs_to_many."
+  Enabled: false
+
 Rails/HelperInstanceVariable:
   Description: "Do not use instance variables in helpers"
   Enabled: false
