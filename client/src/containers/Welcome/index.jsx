@@ -5,7 +5,7 @@ import './styles.scss';
 import RouteSelection from '../../components/RouteSelection';
 
 function Welcome() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Fragment>
@@ -20,7 +20,7 @@ function Welcome() {
                 </div>
               </Col>
               <Col md={{ size: 6, pull: 7 }}>
-                <RouteSelection />
+                <RouteSelection/>
               </Col>
             </Row>
           </Container>

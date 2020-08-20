@@ -1,118 +1,229 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  CustomInput,
-  FormText,
-} from 'reactstrap';
+import { Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Formik } from 'formik';
 import './styles.scss';
+import formatDate from '../../utils/formatDate';
+import destination from '../../constants/destination.json';
+import * as Yup from 'yup';
+
+const initialStates = {
+  from: '',
+  to: '',
+  type: '',
+  first: '',
+  second: '',
+  ticket_number: 1,
+};
+
+const validationSchema = Yup.object().shape({
+  from: Yup.string().required('Please enter a departure location'),
+  to: Yup.string().required('Please enter a arrival location'),
+  type: Yup.string().required('Please enter a flight type'),
+  first: Yup.string().required('Please enter your first trip date'),
+  second: Yup.string().when('type', {
+    is: (val) => val === '2',
+    then: Yup.string().required('Please enter your second trip date'),
+    otherwise: Yup.string().nullable(),
+  }),
+  ticket_number: Yup.string().required('Please enter your booked tickets'),
+});
 
 function RouteSelection() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  const searchFlight = (data) => {
+    const { type, first, second, ticket_number, from, to } = data;
+    const flight = {
+      type: parseInt(type),
+      time: {
+        first,
+        second,
+      },
+      ticket_number,
+      locations: {
+        from,
+        to,
+      },
+    };
+    console.log(flight);
+  };
 
   return (
     <Fragment>
-      <div className='booking-form'>
-        <Form>
-          <Row form>
-            <Col sm='6'>
-              <FormGroup>
-                <Label className='form-label' for='departures'>
-                  {t('routeSeclection.from')}
-                </Label>
-                <CustomInput
-                  className='form-control'
-                  type='select'
-                  name='select'
-                  id='departures'>
-                  <option value=''>{t('routeSeclection.destination')}</option>
-                  <option>{t('routeSeclection.hn')}</option>
-                  <option>{t('routeSeclection.dn')}</option>
-                  <option>{t('routeSeclection.hcm')}</option>
-                </CustomInput>
-              </FormGroup>
-            </Col>
-            <Col sm='6'>
-              <FormGroup>
-                <Label className='form-label' for='arrive'>
-                  {t('routeSeclection.to')}
-                </Label>
-                <CustomInput
-                  className='form-control'
-                  type='select'
-                  name='select'
-                  id='arrive'>
-                  <option value=''>{t('routeSeclection.destination')}</option>
-                  <option>{t('routeSeclection.hn')}</option>
-                  <option>{t('routeSeclection.dn')}</option>
-                  <option>{t('routeSeclection.hcm')}</option>
-                </CustomInput>
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col sm='6'>
-              <FormGroup>
-                <Label className='form-label' for='arrive'>
-                  {t('routeSeclection.flightTypes')}
-                </Label>
-                <CustomInput
-                  className='form-control'
-                  type='select'
-                  name='select'
-                  id='arrive'>
-                  <option value=''>{t('routeSeclection.types')}</option>
-                  <option>{t('routeSeclection.roundTrip')}</option>
-                  <option>{t('routeSeclection.oneWay')}</option>
-                </CustomInput>
-              </FormGroup>
-            </Col>
-            <Col sm='6'>
-              <FormGroup>
-                <Label className='form-label' for='ticket-number'>
-                  {t('routeSeclection.ticketNumber')}
-                </Label>
-                <CustomInput
-                  type='number'
-                  className='form-control'
-                  min='1'
-                  defaultValue='1'
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col sm='6'>
-              <FormGroup>
-                <Label className='form-label' for='departure-date'>
-                  {t('routeSeclection.departureDate')}
-                </Label>
-                <Input className='form-control' type='date' required />
-              </FormGroup>
-            </Col>
-            <Col sm='6'>
-              <FormGroup>
-                <Label className='form-label' for='return date-date'>
-                  {t('routeSeclection.returnDate')}
-                </Label>
-                <Input className='form-control' type='date' required />
-              </FormGroup>
-            </Col>
-          </Row>
-          <div className='form-btn'>
-            <Button className='submit-btn'>
-              {t('routeSeclection.checkAvai')}
-            </Button>
+      <Formik
+        initialValues={initialStates}
+        validationSchema={validationSchema}
+        onSubmit={(values, actions) => {
+          searchFlight(values);
+        }}>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isValid,
+          errors,
+          touched,
+        }) => (
+          <div className='booking-form'>
+            <Form onSubmit={handleSubmit}>
+              <Row form>
+                <Col sm='6'>
+                  <FormGroup>
+                    <Label className='form-label required' for='from'>
+                      {t('routeSeclection.from')}
+                    </Label>
+                    <Input
+                      className='form-control'
+                      type='select'
+                      name='from'
+                      id='from'
+                      onChange={handleChange}
+                      value={values.from || ''}>
+                      <option value=''>
+                        {t('routeSeclection.destination')}
+                      </option>
+                      {destination.map((place, index) => (
+                        <option key={index} value={place.subname}>
+                          {place.subname}
+                        </option>
+                      ))}
+                    </Input>
+                    {touched.from && errors.from ? (
+                      <div className='error'>{errors.from}</div>
+                    ) : null}
+                  </FormGroup>
+                </Col>
+                <Col sm='6'>
+                  {values.from ? (
+                    <FormGroup>
+                      <Label className='form-label required' for='to'>
+                        {t('routeSeclection.to')}
+                      </Label>
+                      <Input
+                        className='form-control'
+                        type='select'
+                        name='to'
+                        id='to'
+                        onChange={handleChange}
+                        value={values.to || ''}>
+                        <option value=''>
+                          {t('routeSeclection.destination')}
+                        </option>
+                        {destination
+                          .filter((place) => place.subname !== values.from)
+                          .map((place, index) => (
+                            <option key={index} value={place.subname}>
+                              {place.subname}
+                            </option>
+                          ))}
+                      </Input>
+                      {touched.to && errors.to ? (
+                        <div className='error'>{errors.to}</div>
+                      ) : null}
+                    </FormGroup>
+                  ) : null}
+                </Col>
+              </Row>
+              <Row form>
+                <Col sm='6'>
+                  <FormGroup>
+                    <Label className='form-label required' for='type'>
+                      {t('routeSeclection.flightTypes')}
+                    </Label>
+                    <Input
+                      className='form-control'
+                      type='select'
+                      name='type'
+                      id='type'
+                      onChange={handleChange}
+                      value={values.type || ''}>
+                      <option value=''>{t('routeSeclection.types')}</option>
+                      <option value={1}>{t('routeSeclection.oneWay')}</option>
+                      <option value={2}>
+                        {t('routeSeclection.roundTrip')}
+                      </option>
+                    </Input>
+                    {touched.type && errors.type ? (
+                      <div className='error'>{errors.type}</div>
+                    ) : null}
+                  </FormGroup>
+                </Col>
+                <Col sm='6'>
+                  <FormGroup>
+                    <Label className='form-label required' for='ticket_number'>
+                      {t('routeSeclection.ticketNumber')}
+                    </Label>
+                    <Input
+                      type='number'
+                      className='form-control'
+                      min='1'
+                      name='ticket_number'
+                      id='ticket_number'
+                      onChange={handleChange}
+                      value={values.ticket_number}
+                    />
+                    {touched.ticket_number && errors.ticket_number ? (
+                      <div className='error'>{errors.ticket_number}</div>
+                    ) : null}
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row form>
+                <Col sm='6'>
+                  <FormGroup>
+                    <Label className='form-label required' for='first'>
+                      {t('routeSeclection.departureDate')}
+                    </Label>
+                    <Input
+                      className='form-control'
+                      type='date'
+                      name='first'
+                      id='first'
+                      min={formatDate(new Date())}
+                      onChange={handleChange}
+                      value={values.first || ''}
+                    />
+                    {touched.first && errors.first ? (
+                      <div className='error'>{errors.first}</div>
+                    ) : null}
+                  </FormGroup>
+                </Col>
+                <Col sm='6'>
+                  {values.type === '2' && values.first ? (
+                    <FormGroup>
+                      <Label className='form-label required' for='second'>
+                        {t('routeSeclection.returnDate')}
+                      </Label>
+                      <Input
+                        className='form-control'
+                        type='date'
+                        name='second'
+                        id='second'
+                        min={formatDate(new Date(values.first))}
+                        onChange={handleChange}
+                        value={values.second || ''}
+                      />
+                      {touched.second && errors.second ? (
+                        <div className='error'>{errors.second}</div>
+                      ) : null}
+                    </FormGroup>
+                  ) : null}
+                </Col>
+              </Row>
+              <div className='form-btn'>
+                <Button
+                  className='submit-btn'
+                  type='submit'
+                  disabled={!isValid || !values.first}>
+                  {t('routeSeclection.checkAvai')}
+                </Button>
+              </div>
+            </Form>
           </div>
-        </Form>
-      </div>
+        )}
+      </Formik>
     </Fragment>
   );
 }

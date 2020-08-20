@@ -31,11 +31,11 @@ const Header = () => {
         </NavbarBrand>
         <Collapse navbar>
           <Nav className='ml-auto' navbar>
-            <NavItem class='nav-item'>
+            <NavItem className='nav-item'>
               <NavLink href='#'>{t('header.help')}</NavLink>
             </NavItem>
 
-            <NavItem class='nav-item'>
+            <NavItem className='nav-item'>
               <NavLink href='#'>{t('header.signin')}</NavLink>
             </NavItem>
 

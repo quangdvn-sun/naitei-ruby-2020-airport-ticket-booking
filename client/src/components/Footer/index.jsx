@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <Fragment>
-      <footer class='footer'>
+      <footer className='footer'>
         <small>{t('footer.ror')}</small>
         <nav>
           <ul>

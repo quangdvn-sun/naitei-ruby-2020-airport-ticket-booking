@@ -1,0 +1,53 @@
+@import '../../assets/stylesheets/variables';
+
+.section {
+  position: relative;
+  .section-center {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+}
+
+#booking {
+  font-family: 'Montserrat', sans-serif;
+  background-image: url('../../assets/images/welcome_background.jpg');
+  background-size: cover;
+  background-position: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: $blue-medium-light;
+  }
+}
+
+.booking-cta {
+  margin-top: 80px;
+  margin-bottom: 30px;
+  h1 {
+    font-size: 52px;
+    text-transform: uppercase;
+    color: $white;
+    font-weight: 700;
+  }
+  p {
+    font-size: 16px;
+    color: $gray-lighter;
+  }
+}
+
+.info {
+  margin-block: 20px;
+  }
+
+.container > form:nth-child(1) {
+  padding: 5px 0 10px 0;
+  }

@@ -30,5 +30,27 @@
   "welcome": {
     "book": "Đặt vé ngay",
     "lorem": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi. Perspiciatis."
+  },
+  "contactInfo": {
+    "title": "Thông tin liên hệ",
+    "name": "Tên",
+    "email": "Email",
+    "telephone": "Số điện thoại",
+    "address": "Địa chỉ",
+    "birth": "Ngày sinh",
+    "country": "Quốc tịch"
+  },
+  "passengerInfo": {
+    "title": "Thông tin hành khách",
+    "name": "Tên",
+    "service": "Dịch vụ",
+    "birth": "Ngày sinh",
+    "country": "Quốc tịch",
+    "service1": "Thêm hành lý",
+    "service2": "Ưu tiên check-in",
+    "service3": "Phòng chờ thương gia"
+  },
+  "customerInfo": {
+    "submit": "Tiếp"
   }
 }

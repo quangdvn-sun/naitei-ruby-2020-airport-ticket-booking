@@ -1,31 +1,15 @@
 @import '../../assets/stylesheets/variables';
 
-.booking-form {
+.contact-info {
   background-color: $white;
-  padding: 40px 30px;
+  padding: 50px 20px;
   -webkit-box-shadow: 0px 5px 20px -5px $shadow_black;
   box-shadow: 0px 5px 20px -5px $shadow_black;
   border-radius: 4px;
-  .submit-btn {
-    color: $white;
-    background-color: $blue-lighter;
-    font-weight: 700;
-    padding: 14px 30px;
+  .form-control {
+    background-color: $gray-medium-light;
     border-radius: 4px;
     border: none;
-    -webkit-transition: 0.2s all;
-    transition: 0.2s all;
-    &:hover,
-    :focus {
-      opacity: 0.9;
-    }
-  }
-  .form-group {
-    position: relative;
-    margin-bottom: 30px;
-  }
-  .form-control {
-    border-radius: 4px;
     height: 40px;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -41,29 +25,29 @@
   }
 }
 
-.booking-form .form-control::-webkit-input-placeholder {
+.contact-info .form-control::-webkit-input-placeholder {
   color: $form-gray;
 }
 
-.booking-form .form-control:-ms-input-placeholder {
+.contact-info .form-control:-ms-input-placeholder {
   color: $form-gray;
 }
 
-.booking-form .form-control::placeholder {
+.contact-info .form-control::placeholder {
   color: $form-gray;
 }
 
-.booking-form input[type='date'].form-control:invalid {
+.contact-info input[type='date'].form-control:invalid {
   color: $form-gray;
 }
 
-.booking-form select.form-control {
+.contact-info select.form-control {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
 }
 
-.booking-form select.form-control + .select-arrow {
+.contact-info select.form-control + .select-arrow {
   position: absolute;
   right: 0px;
   bottom: 4px;
@@ -76,21 +60,9 @@
   font-size: 14px;
 }
 
-.booking-form select.form-control + .select-arrow:after {
+.contact-info select.form-control + .select-arrow:after {
   content: '\279C';
   display: block;
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
-}
-
-.error {
-  color: crimson;
-  font-size: 0.7em;
-  margin: 0.1em 0;
-  text-align: left;
-}
-
-.required:after {
-  content: ' *';
-  color: crimson;
 }
