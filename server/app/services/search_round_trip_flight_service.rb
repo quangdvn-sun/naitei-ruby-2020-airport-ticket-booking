@@ -6,6 +6,8 @@ class SearchRoundTripFlightService < SearchFlightService
   end
 
   def perform
+    return if @first_flight_time > @second_flight_time
+
     first_flight_route = find_flight_route @from, @to
     second_flight_route = find_flight_route @to, @from
 

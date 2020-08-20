@@ -1,4 +1,4 @@
-class BookingService
+class BookingService < ApplicationService
   def initialize params
     @booking_total = params[:booking_total]
     @booking_details = params[:booking_details]
@@ -40,8 +40,10 @@ class BookingService
       seat_number: generate_seat_number(booking_detail[:flight_id], booking_detail[:seat_type_id]),
       total_price: calculate_total(booking_detail[:flight_id], booking_detail[:seat_type_id],
                                    booking_detail[:service_ids]),
-      booking_status_id: booking_detail[:payment_method_id]
+      booking_status_id: booking_detail[:payment_method_id],
+      booking_dob: format_date(booking_detail[:booking_dob])
     }
+
     booking_detail.merge! extra_info
 
     Booking.new booking_detail.except :service_ids

@@ -7,7 +7,7 @@ class Api::V1::FlightsController < ApiController
     elsif is_round_trip_flight?
       @first_flights, @second_flights = search_round_trip_flight
 
-      render_response @first_flights.size.positive? || @second_flights.size.positive?
+      render_response is_flights_available?
     else
       render json: {success: false, message: I18n.t("flights.error")}, status: :bad_request
     end
@@ -33,6 +33,10 @@ class Api::V1::FlightsController < ApiController
     else
       render json: {success: false, message: I18n.t("flights.not_found")}
     end
+  end
+
+  def is_flights_available?
+    @first_flights&.size&.positive? || @second_flights&.size&.positive?
   end
 
   def is_one_way_flight?

@@ -1,4 +1,4 @@
-class SearchFlightService
+class SearchFlightService < ApplicationService
   def initialize params
     @type = params[:type]
     @from = params[:locations][:from]
@@ -17,9 +17,5 @@ class SearchFlightService
     Flight.search_by_day(departure_date)
           .search_by_route(flight_route)
           .order_flights
-  end
-
-  def format_date date_time
-    date_time.in_time_zone
   end
 end
