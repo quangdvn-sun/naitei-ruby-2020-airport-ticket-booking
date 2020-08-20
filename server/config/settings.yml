@@ -9,4 +9,4 @@ bookings:
   normal_seat: 1
   business_seat: 2
   fixed_money: 2
-
+  minimum_total_price: 0
