@@ -7,11 +7,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './i18n';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <Suspense fallback='loading'>
       <App />
     </Suspense>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
 

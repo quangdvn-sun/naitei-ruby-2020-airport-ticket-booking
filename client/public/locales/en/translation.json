@@ -30,5 +30,29 @@
   "welcome": {
     "book": "Book your flight",
     "lorem": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi. Perspiciatis."
+  },
+  "contactInfo": {
+    "title": "Contact Information",
+    "name": "Name",
+    "email": "Email",
+    "telephone": "Telephone",
+    "address": "Address",
+    "birth": "Date of birth",
+    "country": "Country of residence"
+  },
+  "passengerInfo": {
+    "title": "Passenger Information",
+    "name": "Name",
+    "service": "Service",
+    "birth": "Date of birth",
+    "country": "Country of residence",
+    "service1": "Extra Luggage",
+    "service2": "Priority Check-in",
+    "service3": "Business Lounge"
+  },
+  "customerInfo": {
+    "passenger": "Passenger information",
+    "contact": "Contact information",
+    "submit": "Next"
   }
 }

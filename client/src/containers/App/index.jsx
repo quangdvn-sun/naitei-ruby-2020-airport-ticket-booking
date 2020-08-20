@@ -3,14 +3,13 @@ import './styles.scss';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Welcome from '../Welcome';
+import CustomerInfo from '../CustomerInfo';
 
 function App() {
   return (
     <div className='App'>
       <Header />
-      <div>
-        <Welcome/>
-      </div>
+      <Welcome />
       <Footer />
     </div>
   );
