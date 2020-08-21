@@ -27,6 +27,7 @@ AllCops:
     - "script/rails"
     - "config/**/*"
     - "app/views/layouts/*"
+    - "app/views/booking_mailer/*"
     - "app/assets/**/*"
     - "app/javascript/**/*"
     - ".idea/**/*"

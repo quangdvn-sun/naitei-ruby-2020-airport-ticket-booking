@@ -9,7 +9,7 @@ class Api::V1::FlightsController < ApiController
 
       render_response is_flights_available?
     else
-      render json: {success: false, message: I18n.t("flights.error")}, status: :bad_request
+      render json: {success: false, message: I18n.t("flights.error")}, status: :not_found
     end
   end
 
@@ -31,12 +31,12 @@ class Api::V1::FlightsController < ApiController
     if condition
       render :create
     else
-      render json: {success: false, message: I18n.t("flights.not_found")}
+      render json: {success: false, message: I18n.t("flights.not_found")}, status: :not_found
     end
   end
 
   def is_flights_available?
-    @first_flights&.size&.positive? || @second_flights&.size&.positive?
+    @first_flights&.size&.positive? && @second_flights&.size&.positive?
   end
 
   def is_one_way_flight?

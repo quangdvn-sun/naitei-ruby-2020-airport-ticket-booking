@@ -1,0 +1,21 @@
+<h2><%= t ".hello" %>, <%= @user[:name] %></h2>
+<p><%= t ".confirmation" %></p>
+<span><%= t ".total_price" %>: <%= @total_price %></span><br>
+<span><%= t ".payment_method" %>: <%= @payment_method %></span>
+<br><br>
+<% @bookings.each do |booking| %>
+<div style="margin-left:1em;">
+  <span>-- <%= t ".plane" %>: <%= booking.plane.name %></span><br>
+  <span>-- <%= t ".seat_number" %>: <%= booking.seat_number %></span>
+  <ul>
+    <li><%= t ".booking_name" %>: <%= booking.booking_name %></li>
+    <li><%= t ".booking_dob" %>: <%= booking.booking_dob %></li>
+    <li><%= t ".booking_nation" %>: <%= booking.booking_nation %></li>
+    <li><%= t ".price" %>: <%= booking.total_price %></li>
+    <li><%= t ".seat_type" %>: <%= booking.seat_type_name %></li>
+    <li><%= t ".booking_status" %>: <%= booking.booking_status_name %></li>
+  </ul>
+</div>
+<% end %>
+<p><%= t ".cash_payment" if @payment_method == Settings.payment_methods.cash %></p>
+<p><%= t ".incorrect" %></p>
