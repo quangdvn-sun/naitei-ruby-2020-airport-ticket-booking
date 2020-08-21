@@ -13,3 +13,5 @@ bookings:
 time:
   past: 200
   future: 1
+payment_methods:
+  cash: "Cash"

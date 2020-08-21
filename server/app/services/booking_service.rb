@@ -2,6 +2,7 @@ class BookingService < ApplicationService
   def initialize params
     @booking_total = params[:booking_total]
     @booking_details = params[:booking_details]
+    @booking_user = params[:booking_user]
   end
 
   def perform
@@ -9,6 +10,7 @@ class BookingService < ApplicationService
       booking_response = booking_with @booking_details
       return {success: false, message: I18n.t("bookings.error")} unless booking_response
 
+      booking_response[:user] = @booking_user
       {success: true, data: booking_response}
     else
       {success: false, message: I18n.t("bookings.error")}
@@ -19,18 +21,24 @@ class BookingService < ApplicationService
 
   def booking_with booking_details
     final_bookings = []
+    total_price = 0
     ActiveRecord::Base.transaction do
       booking_details.each_with_index do |booking, index|
         booked = create_new_booking booking
         raise StandardError unless booked.save
 
         final_bookings << booked
-        booking_services = get_services(booking_details[index][:service_ids])
+        total_price += booked.total_price
 
+        booking_services = get_services(booking_details[index][:service_ids])
         booked.services << booking_services
       end
     end
-    final_bookings
+    {
+      total_price: total_price,
+      payment_method: final_bookings.first.method_name,
+      bookings: final_bookings
+    }
   rescue StandardError
     false
   end
@@ -43,9 +51,7 @@ class BookingService < ApplicationService
       booking_status_id: booking_detail[:payment_method_id],
       booking_dob: format_date(booking_detail[:booking_dob])
     }
-
     booking_detail.merge! extra_info
-
     Booking.new booking_detail.except :service_ids
   end
 

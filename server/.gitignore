@@ -29,6 +29,7 @@
 /config/database.yml
 
 node_modules
+.env
 
 config/settings.local.yml
 config/settings/*.local.yml

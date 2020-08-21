@@ -1,15 +1,12 @@
 json.success true
 json.data do
-  json.array! @booking_response[:data] do |data|
-    json.booking_name data.booking_name
-    json.booking_dob data.booking_dob
-    json.booking_nation data.booking_nation
-    json.plane_name data.plane.name
-    json.total_price data.total_price
-    json.seat_number data.seat_number
-    json.seat_type data.seat_type_name
-    json.payment_method data.method_name
-    json.booking_status data.booking_status_name
+  json.total_price @booking_response[:data][:total_price]
+  json.payment_method @booking_response[:data][:payment_method]
+  json.user do
+    json.partial! "user", user: @booking_response[:data][:user]
   end
+  json.bookings @booking_response[:data][:bookings] do |booking|
+    json.partial! "booking", booking: booking
+  end
+  json.count @booking_count
 end
-json.count @booking_count
