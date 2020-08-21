@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_08_14_060113) do
 
   create_table "bookings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "booking_name"
-    t.string "booking_dob"
+    t.datetime "booking_dob"
     t.string "booking_nation"
     t.string "seat_number"
     t.float "total_price"

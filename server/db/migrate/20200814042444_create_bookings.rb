@@ -2,7 +2,7 @@ class CreateBookings < ActiveRecord::Migration[6.0]
   def change
     create_table :bookings do |t|
       t.string :booking_name
-      t.string :booking_dob
+      t.datetime :booking_dob
       t.string :booking_nation
       t.string :seat_number
       t.float :total_price
