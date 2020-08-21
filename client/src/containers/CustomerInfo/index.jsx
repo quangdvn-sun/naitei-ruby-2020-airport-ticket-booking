@@ -21,7 +21,7 @@ function CustomerInfo() {
                 </div>
               </Col>
               <Col md={{ size: 6, pull: 7 }}>
-                <Form>
+                {/* <Form>
                   <div className='info'>
                     <PassengerInfo/>
                   </div>
@@ -34,7 +34,7 @@ function CustomerInfo() {
                   <div>
                     <Button color="primary">{t('customerInfo.submit')}</Button>
                   </div>
-                </Form>
+                </Form> */}
               </Col>
             </Row>
           </Container>

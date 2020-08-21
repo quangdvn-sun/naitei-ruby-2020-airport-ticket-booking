@@ -1,6 +1,6 @@
 en:
   flights:
     error: "Invalid flight type!!"
-    not_found: "Flights not found dsadsaas!!"
+    not_found: "Flights not found!!"
   bookings:
     error: "An error occured while booking !!"
