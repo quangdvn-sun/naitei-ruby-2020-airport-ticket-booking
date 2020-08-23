@@ -29,7 +29,7 @@ class Api::V1::FlightsController < ApiController
 
   def render_response condition
     if condition
-      render :create
+      render :create, status: :ok
     else
       render json: {success: false, message: I18n.t("flights.not_found")}, status: :not_found
     end

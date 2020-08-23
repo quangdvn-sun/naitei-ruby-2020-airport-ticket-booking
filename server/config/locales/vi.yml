@@ -1,23 +1,26 @@
 vi:
   flights:
-    error: "Loại chuyến bay không hợp lệ !!"
-    not_found: "Không tìm thấy chuyến bay !!"
+    error: 'Loại chuyến bay không hợp lệ !!'
+    not_found: 'Không tìm thấy chuyến bay !!'
   bookings:
-    error: "Đã xảy ra lỗi khi đặt vé !!"
+    error: 'Đã xảy ra lỗi khi đặt vé !!'
   booking_mailer:
     payment_confirmation:
-      subject: "Thông tin thanh toán"
-      hello: "Xin chào"
-      confirmation: "Các ghế được đặt đã được thêm vào yêu cầu đặt vé của bạn. Hãy xác nhận thông tin đặt vé của bạn bên dưới."
-      cash_payment: "Bạn hãy in hoá đơn này ra và mang đến sân bay cùng bạn. "
-      total_price: "Tổng giá tiền"
-      payment_method: "Phương thức thanh toán"
-      plane: "Máy bay số"
-      seat_number: "Ghế số"
-      booking_name: "Tên khách hàng"
-      booking_dob: "Ngày sinh"
-      booking_nation: "Quốc tịch"
-      price: "Giá tiền"
-      seat_type: "Loại ghế"
-      booking_status: "Trạng thái vé"
-      incorrect: "Nếu thông tin đặt vé của bạn chưa chính xác, làm ơn liên lạc lại với chúng tôi tại airport@example.com / tel: 0123456789 để nhận được hỗ trợ."
+      subject: 'Thông tin thanh toán'
+      hello: 'Xin chào'
+      confirmation: 'Các ghế được đặt đã được thêm vào yêu cầu đặt vé của bạn. Hãy xác nhận thông tin đặt vé của bạn bên dưới.'
+      cash_payment: 'Bạn hãy in hoá đơn này ra và mang đến sân bay cùng bạn. '
+      total_price: 'Tổng giá tiền'
+      payment_method: 'Phương thức thanh toán'
+      plane: 'Máy bay số'
+      seat_number: 'Ghế số'
+      booking_name: 'Tên khách hàng'
+      booking_dob: 'Ngày sinh'
+      booking_nation: 'Quốc tịch'
+      price: 'Giá tiền'
+      seat_type: 'Loại ghế'
+      booking_status: 'Trạng thái vé'
+      incorrect: 'Nếu thông tin đặt vé của bạn chưa chính xác, làm ơn liên lạc lại với chúng tôi tại airport@example.com / tel: 0123456789 để nhận được hỗ trợ.'
+  customers:
+    invalid_token: 'Token không tồn tại'
+    unable_create: 'Không thể tạo tài khoản này'

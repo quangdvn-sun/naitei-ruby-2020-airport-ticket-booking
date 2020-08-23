@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :flights, only: :create
       resources :bookings, only: :create
+      post "/signup", to: "customers#create"
     end
   end
 end
