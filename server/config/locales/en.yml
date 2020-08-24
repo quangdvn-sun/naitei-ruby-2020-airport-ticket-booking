@@ -1,26 +1,29 @@
 en:
   flights:
-    error: 'Invalid flight type!!'
-    not_found: 'Flights not found!!'
+    error: "Invalid flight type!!"
+    not_found: "Flights not found!!"
   bookings:
-    error: 'An error occured while booking !!'
+    error: "An error occured while booking !!"
   booking_mailer:
     payment_confirmation:
-      subject: 'Payment information'
-      hello: 'Hello'
-      confirmation: 'The seat request has been added to your booking. Please confirm your booking information below.'
-      total_price: 'Total payment'
-      payment_method: 'Payment method'
-      plane: 'Plane number'
-      seat_number: 'Seat number'
-      booking_name: 'Customer name'
-      booking_dob: 'Date of birth'
-      booking_nation: 'Nationality'
-      price: 'Price'
-      seat_type: 'Seat type'
-      booking_status: 'Booking status'
-      cash_payment: 'Print this receipt and bring it to the airport with you. '
-      incorrect: 'If your booking information is incorrect, please contact us at airport@example.com / tel: 0123456789 for support,'
+      subject: "Payment information"
+      hello: "Hello"
+      confirmation: "The seat request has been added to your booking. Please confirm your booking information below."
+      total_price: "Total payment"
+      payment_method: "Payment method"
+      plane: "Plane number"
+      seat_number: "Seat number"
+      booking_name: "Customer name"
+      booking_dob: "Date of birth"
+      booking_nation: "Nationality"
+      price: "Price"
+      seat_type: "Seat type"
+      booking_status: "Booking status"
+      cash_payment: "Print this receipt and bring it to the airport with you. "
+      incorrect: "If your booking information is incorrect, please contact us at airport@example.com / tel: 0123456789 for support,"
   customers:
-    invalid_token: 'Invalid Token'
-    unable_create: 'Unable to create this Account'
+    invalid_token: "Invalid Token"
+    unable_create: "Unable to create this Account"
+    unavailable: "Unavailable Customer"
+    not_found: "Account not found"
+    incorrect_password: "Incorrect password"
