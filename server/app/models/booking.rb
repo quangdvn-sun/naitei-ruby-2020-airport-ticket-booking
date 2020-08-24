@@ -1,7 +1,11 @@
 class Booking < ApplicationRecord
-  BOOKINGS_PARAMS = [:booking_total, booking_user: [:name, :email, :phone],
-                                     booking_details: [:booking_name, :booking_dob, :booking_nation, :payment_method_id,
-                                                       :seat_type_id, :flight_id, :customer_id, service_ids: []]].freeze
+  BOOKINGS_PARAMS = [:booking_total,
+                     :payment_method_id,
+                     :flight_id,
+                     :customer_id,
+                     booking_user: [:name, :email, :phone],
+                     booking_details: [:booking_name, :booking_dob, :booking_nation,
+                                       :seat_type_id, service_ids: []]].freeze
 
   has_and_belongs_to_many :services
   belongs_to :customer, optional: true
@@ -25,11 +29,19 @@ class Booking < ApplicationRecord
   delegate :name, to: :booking_status, prefix: true
   delegate :method_name, to: :payment_method
 
+  scope :search_by_id, ->(ids){where customer_id: ids}
+  scope :is_pending, ->{where booking_status: Settings.bookings.pending}
+  scope :is_success, ->{where booking_status: Settings.bookings.success}
+
   before_create :increase_reserved_seat
   before_destroy :decrease_reserved_seat
 
   def is_normal_seat?
     seat_type_id == Settings.bookings.normal_seat
+  end
+
+  def is_business_seat?
+    seat_type_id == Settings.bookings.business_seat
   end
 
   private
