@@ -1,13 +1,15 @@
 class Api::V1::FlightsController < ApiController
+  before_action :authenticate_token!
+
   def create
     if is_one_way_flight?
       @flights = search_one_way_flight
 
-      render_response @flights.size.positive?
+      render_response is_one_way_flights_available?
     elsif is_round_trip_flight?
       @first_flights, @second_flights = search_round_trip_flight
 
-      render_response is_flights_available?
+      render_response is_round_trip_flights_available?
     else
       render json: {success: false, message: I18n.t("flights.error")}, status: :not_found
     end
@@ -35,7 +37,11 @@ class Api::V1::FlightsController < ApiController
     end
   end
 
-  def is_flights_available?
+  def is_one_way_flights_available?
+    @flights.size.positive?
+  end
+
+  def is_round_trip_flights_available?
     @first_flights&.size&.positive? && @second_flights&.size&.positive?
   end
 
