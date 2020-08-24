@@ -31,6 +31,36 @@
     "book": "Đặt vé ngay",
     "lorem": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi. Perspiciatis."
   },
+  "bookingSession": {
+    "progressTabs": {
+      "flight": "Chọn chuyến bay",
+      "passengerDetails": "Thông tin khách hàng và dịch vụ",
+      "paymentMethod": "Phương thức thanh toán"
+    },
+    "flightHeader": {
+      "chooseFlight": "Chọn chuyến bay",
+      "to": "đến"
+    },
+    "allFlights": {
+      "economy": "Hạng phổ thông",
+      "business": "Hạng thương gia",
+      "selectFlight": "Chọn chuyến bay"
+    },
+    "cartInfo": {
+      "to": "đến",
+      "total": "Tổng",
+      "roundTrip": "Khứ hồi",
+      "oneWay": "Một chiều",
+      "person": "người",
+      "changeDetails": "Đổi lịch trình bay",
+      "include": "(bao gồm thuế và phụ phí)",
+      "currency": "USD"
+    },
+    "bookingNav": {
+      "next": "Đi tiếp",
+      "back": "Quay lại"
+    }
+  },
   "contactInfo": {
     "title": "Thông tin liên hệ",
     "name": "Tên",

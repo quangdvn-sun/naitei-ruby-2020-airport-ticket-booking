@@ -1,5 +1,14 @@
 @import '../../assets/stylesheets/variables';
 
+.navbar-light {
+  padding: 10px 200px;
+  box-shadow: 0 4px 2px -3px rgba(0, 0, 0, 0.2);
+
+  .navbar-nav .nav-link {
+    font-weight: 600;
+  }
+}
+
 #logo {
   float: left;
   font-size: 1.7em;

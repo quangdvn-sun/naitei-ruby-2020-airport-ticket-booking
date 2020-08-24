@@ -1,0 +1,42 @@
+@import '../../../../assets/stylesheets/variables';
+
+.selectClass {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 0 2px;
+  color: white;
+  text-align: right;
+
+  .select {
+    font-size: 0.9em;
+    font-weight: 300;
+
+    .checkbox {
+      vertical-align: middle;
+      background: white;
+      color: $dark-blue;
+      font-size: 1.1em;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      display: inline-block;
+      text-align: center;
+      border-radius: 50%;
+      margin-bottom: 5px;
+    }
+  }
+
+  .price {
+    font-size: 1em;
+    font-weight: 700;
+  }
+}
+
+.selectClass.eco {
+  background: $eco-green;
+}
+
+.selectClass.business {
+  background: $business-blue;
+}

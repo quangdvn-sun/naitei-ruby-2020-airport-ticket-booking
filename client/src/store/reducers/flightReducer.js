@@ -4,6 +4,14 @@ import {
 } from '../actions/types';
 
 const initialState = {
+  time: {
+    first: null,
+    second: null
+  },
+  locations: {
+    from: null,
+    to: null,
+  },
   firstRouteFlights: [],
   secondRouteFlights: [],
   type: null,
@@ -15,6 +23,8 @@ const flightReducer = (state = initialState, { type, payload }) => {
       const { flights } = payload;
       return {
         ...state,
+        time: payload.time,
+        locations: payload.locations,
         type: payload.flight_type,
         firstRouteFlights: [...flights],
       };
@@ -23,6 +33,8 @@ const flightReducer = (state = initialState, { type, payload }) => {
       const { first, second } = payload;
       return {
         ...state,
+        time: payload.time,
+        locations: payload.locations,
         type: payload.flight_type,
         firstRouteFlights: [...first.flights],
         secondRouteFlights: [...second.flights],

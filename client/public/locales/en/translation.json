@@ -31,6 +31,36 @@
     "book": "Book your flight",
     "lorem": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi. Perspiciatis."
   },
+  "bookingSession": {
+    "progressTabs": {
+      "flight": "Flights",
+      "passengerDetails": "Passenger details and services",
+      "paymentMethod": "Payment methods"
+    },
+    "flightHeader": {
+      "chooseFlight": "Choose your flight",
+      "to": "to"
+    },
+    "allFlights": {
+      "economy": "Economy Class",
+      "business": "Business Class",
+      "selectFlight": "Select flight"
+    },
+    "cartInfo": {
+      "to": "to",
+      "total": "Total",
+      "roundTrip": "Round trip",
+      "oneWay": "One way",
+      "person": "person(s)",
+      "changeDetails": "Change flight details",
+      "include": "(incl. taxes & surcharges)",
+      "currency": "USD"
+    },
+    "bookingNav": {
+      "next": "Next",
+      "back": "Back"
+    }
+  },
   "contactInfo": {
     "title": "Contact Information",
     "name": "Name",

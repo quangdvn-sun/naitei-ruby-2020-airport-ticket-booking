@@ -1,0 +1,63 @@
+@import '../../assets/stylesheets/variables';
+
+.cartInfo {
+  position: -webkit-sticky;
+  position: sticky;
+  align-self: flex-start;
+  top: 40px;
+  padding: 0 20px;
+  color: white;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px 4px 0 0;
+  }
+  .fromTo {
+    font-size: 1.1em;
+    background: $dark-light-blue;
+    font-weight: 700;
+    padding: 15px 20px;
+    line-height: 1.1;
+
+    .info {
+      font-weight: normal;
+      font-size: 0.75em;
+      color: $light-blue;
+    }
+  }
+  .changeFlight {
+    cursor: pointer;
+    background: $dark-blue;
+    font-size: 0.8em;
+    font-weight: 700;
+    padding: 7px 20px;
+    border-radius: 0 0 4px 4px;
+  }
+  .cartTotal {
+    position: relative;
+    margin-top: 10px;
+    padding: 10px 20px 20px 20px;
+    color: $dark-blue;
+    background: white;
+    border-radius: 4px;
+
+    span {
+      font-size: 1.4em;
+    }
+    .include {
+      position: relative;
+      font-weight: 300;
+      font-size: 0.75em;
+      line-height: 2;
+      float: right;
+      bottom: 13px;
+    }
+    .number {
+      font-size: 1.2em;
+      color: $gray-dark;
+      position: absolute;
+      right: 20px;
+    }
+  }
+}

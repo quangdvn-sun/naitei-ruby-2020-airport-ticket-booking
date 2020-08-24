@@ -1,0 +1,44 @@
+@import '../../../../assets/stylesheets/variables';
+
+.flightTime {
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 20px;
+
+  .col {
+    padding: 0;
+    text-align: center;
+  }
+
+  .time {
+    margin-top: 35px;
+    line-height: 1em;
+    
+    strong {
+      font-size: 1.1em;
+      color: $gray-dark;
+    }
+    .city {
+      font-size: 0.8em;
+      color: $dark-blue;
+    }
+  }
+
+  .elapsedTime {
+    margin-top: 30px;
+    line-height: 1.1;
+
+    span {
+      font-size: 0.7em;
+      color: $gray-dark;
+    }
+
+    .value {
+      font-size: 0.75em;
+      color: white;
+      padding: 3px 7px;
+      background: $gray-medium;
+      border-radius: 12px;
+    }
+  }
+}

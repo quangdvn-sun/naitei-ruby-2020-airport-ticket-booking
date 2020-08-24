@@ -52,27 +52,27 @@ Airport.create(name: "Da Nang Airport",
 Airport.create(name: "Tan Son Nhat Airport",
   location_id: 3)
 
-PlaneType.create(plane_type: "Airbus A320",
+PlaneType.create(name: "Airbus A320",
   normal_seat_number: 100,
   business_seat_number: 100)
 
-PlaneType.create(plane_type: "Airbus A330",
+PlaneType.create(name: "Airbus A330",
   normal_seat_number: 90,
   business_seat_number: 90)
 
-PlaneType.create(plane_type: "Airbus A340",
+PlaneType.create(name: "Airbus A340",
   normal_seat_number: 80,
   business_seat_number: 80)
 
-PlaneType.create(plane_type: "Boeing 737",
+PlaneType.create(name: "Boeing 737",
   normal_seat_number: 150,
   business_seat_number: 150)
 
-PlaneType.create(plane_type: "Boeing 747",
+PlaneType.create(name: "Boeing 747",
   normal_seat_number: 125,
   business_seat_number: 125)
 
-PlaneType.create(plane_type: "Boeing 757",
+PlaneType.create(name: "Boeing 757",
   normal_seat_number: 75,
   business_seat_number: 75)
 
