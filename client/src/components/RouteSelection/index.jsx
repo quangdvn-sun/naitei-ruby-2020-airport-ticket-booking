@@ -3,8 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { Formik } from 'formik';
 import './styles.scss';
+import { useDispatch } from 'react-redux';
+import { getOneWayFlights, getRoundTripFlights } from '../../store/actions';
 import formatDate from '../../utils/formatDate';
 import destination from '../../constants/destination.json';
+import flightType from '../../constants/flightType.json';
 import * as Yup from 'yup';
 
 const initialStates = {
@@ -22,7 +25,7 @@ const validationSchema = Yup.object().shape({
   type: Yup.string().required('Please enter a flight type'),
   first: Yup.string().required('Please enter your first trip date'),
   second: Yup.string().when('type', {
-    is: (val) => val === '2',
+    is: val => val === '2',
     then: Yup.string().required('Please enter your second trip date'),
     otherwise: Yup.string().nullable(),
   }),
@@ -30,23 +33,26 @@ const validationSchema = Yup.object().shape({
 });
 
 function RouteSelection() {
+  const dispatch = useDispatch();
+
   const { t } = useTranslation();
 
-  const searchFlight = (data) => {
-    const { type, first, second, ticket_number, from, to } = data;
+  const handleSearchFlights = flightData => {
+    const { type, first, second, from, to } = flightData;
     const flight = {
       type: parseInt(type),
       time: {
         first,
         second,
       },
-      ticket_number,
       locations: {
         from,
         to,
       },
     };
-    console.log(flight);
+    parseInt(type) === flightType.oneWay
+      ? dispatch(getOneWayFlights(flight))
+      : dispatch(getRoundTripFlights(flight));
   };
 
   return (
@@ -55,17 +61,10 @@ function RouteSelection() {
         initialValues={initialStates}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          searchFlight(values);
-        }}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          isValid,
-          errors,
-          touched,
-        }) => (
+          handleSearchFlights(values);
+        }}
+      >
+        {({ handleChange, handleSubmit, values, isValid, errors, touched }) => (
           <div className='booking-form'>
             <Form onSubmit={handleSubmit}>
               <Row form>
@@ -80,7 +79,8 @@ function RouteSelection() {
                       name='from'
                       id='from'
                       onChange={handleChange}
-                      value={values.from || ''}>
+                      value={values.from || ''}
+                    >
                       <option value=''>
                         {t('routeSeclection.destination')}
                       </option>
@@ -107,12 +107,13 @@ function RouteSelection() {
                         name='to'
                         id='to'
                         onChange={handleChange}
-                        value={values.to || ''}>
+                        value={values.to || ''}
+                      >
                         <option value=''>
                           {t('routeSeclection.destination')}
                         </option>
                         {destination
-                          .filter((place) => place.subname !== values.from)
+                          .filter(place => place.subname !== values.from)
                           .map((place, index) => (
                             <option key={index} value={place.subname}>
                               {place.subname}
@@ -138,7 +139,8 @@ function RouteSelection() {
                       name='type'
                       id='type'
                       onChange={handleChange}
-                      value={values.type || ''}>
+                      value={values.type || ''}
+                    >
                       <option value=''>{t('routeSeclection.types')}</option>
                       <option value={1}>{t('routeSeclection.oneWay')}</option>
                       <option value={2}>
@@ -216,7 +218,8 @@ function RouteSelection() {
                 <Button
                   className='submit-btn'
                   type='submit'
-                  disabled={!isValid || !values.first}>
+                  disabled={!isValid || !values.first}
+                >
                   {t('routeSeclection.checkAvai')}
                 </Button>
               </div>

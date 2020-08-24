@@ -15,6 +15,7 @@ AllCops:
   Include:
     - "app/**/*"
     - "lib/**/*"
+    - "lib/*"
     - "**/*.gemspec"
     - "Gemfile"
     - "app/services/*"

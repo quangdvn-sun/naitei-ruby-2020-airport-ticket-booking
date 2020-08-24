@@ -6,7 +6,7 @@ class Api::V1::BookingsController < ApiController
       @booking_count = @booking_response[:data][:bookings].size
       BookingMailer.payment_confirmation(@booking_response).deliver_now
 
-      render :create
+      render :create, status: :ok
     else
       render json: {success: @booking_response[:success], message: @booking_response[:message]}, status: :not_found
     end

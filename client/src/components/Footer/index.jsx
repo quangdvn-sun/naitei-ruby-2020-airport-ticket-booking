@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import './styles.scss';
 
 const Footer = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Fragment>
