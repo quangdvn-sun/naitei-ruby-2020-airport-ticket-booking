@@ -4,6 +4,7 @@ en:
     not_found: "Flights not found!!"
   bookings:
     error: "An error occured while booking !!"
+    none_bookings: "You haven't booked anything yet"
   booking_mailer:
     payment_confirmation:
       subject: "Payment information"

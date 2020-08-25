@@ -4,6 +4,7 @@ vi:
     not_found: "Không tìm thấy chuyến bay !!"
   bookings:
     error: "Đã xảy ra lỗi khi đặt vé !!"
+    none_bookings: "Bạn chưa đặt vé nào"
   booking_mailer:
     payment_confirmation:
       subject: "Thông tin thanh toán"

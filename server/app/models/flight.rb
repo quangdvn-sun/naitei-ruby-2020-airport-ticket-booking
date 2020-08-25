@@ -10,7 +10,7 @@ class Flight < ApplicationRecord
   delegate :name, to: :plane, prefix: true
   delegate :name, to: :shift, prefix: true
   delegate :name, to: :flight_status, prefix: true
-  delegate :plane_type_name, to: :plane
+  delegate :plane_type_name, :normal_seat_number, :business_seat_number, to: :plane
   delegate :departure_time, to: :shift
   delegate :base_price, :flight_duration, to: :flight_route
 
