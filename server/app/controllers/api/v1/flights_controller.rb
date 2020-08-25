@@ -1,6 +1,4 @@
 class Api::V1::FlightsController < ApiController
-  before_action :authenticate_token!
-
   def create
     if is_one_way_flight?
       @flights = search_one_way_flight

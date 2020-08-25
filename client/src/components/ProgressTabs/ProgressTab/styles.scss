@@ -1,0 +1,31 @@
+@import '../../../assets/stylesheets/variables';
+
+.progressTab {
+  padding: 0.3em 1em;
+  margin-right: 2em;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: $dark-blue;
+  background: white;
+  border-radius: 5px;
+
+  .index {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    margin: 0 12px 0 0;
+  }
+}
+
+.progressTab.active {
+  background: $dark-light-blue;
+  color: white;
+  
+  .index {
+    background: white;
+    color: $dark-blue;
+    border-radius: 50%;
+  }
+}

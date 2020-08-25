@@ -1,14 +1,17 @@
 [
   {
     "id": 1,
-    "subname": "HAN"
+    "subname": "HAN",
+    "fullname": "Hanoi"
   },
   {
     "id": 2,
-    "subname": "DAN"
+    "subname": "DAN",
+    "fullname": "Da Nang"
   },
   {
     "id": 3,
-    "subname": "HCM"
+    "subname": "HCM",
+    "fullname": "Ho Chi Minh"
   }
 ]

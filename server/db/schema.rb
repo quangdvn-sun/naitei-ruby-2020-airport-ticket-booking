@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 2020_08_14_060113) do
   end
 
   create_table "plane_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "plane_type"
+    t.string "name"
     t.integer "normal_seat_number"
     t.integer "business_seat_number"
     t.datetime "created_at", precision: 6, null: false

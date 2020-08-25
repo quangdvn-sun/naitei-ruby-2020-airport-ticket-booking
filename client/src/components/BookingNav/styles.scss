@@ -1,0 +1,18 @@
+@import '../../assets/stylesheets/variables';
+
+.bookingNav {
+  position: fixed;
+  opacity: 0.9;
+  z-index: 1000;
+  width: 100%;
+  bottom: 0;
+  background: $bottom-blue;
+  padding: 10px 200px; 
+
+  .next {
+    float: right;
+  }
+  button {
+    width: 120px;
+  }
+}
