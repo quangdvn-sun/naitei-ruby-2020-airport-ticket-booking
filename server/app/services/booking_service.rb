@@ -1,33 +1,23 @@
 class BookingService < ApplicationService
   def initialize params
+    @booking_user = params[:booking_user]
+    @total_price = params[:total_price]
+    @customer_id = params[:customer_id]
+    @payment_method_id = params[:payment_method_id]
     @booking_total = params[:booking_total]
     @booking_details = params[:booking_details]
-    @booking_user = params[:booking_user]
-    @flight_id = params[:flight_id]
-    @payment_method_id = params[:payment_method_id]
-    @customer_id = params[:customer_id]
   end
 
-  def perform
-    if @booking_total == @booking_details.size
-      booking_response = booking_with @booking_details
-      return {success: false, message: I18n.t("bookings.error")} unless booking_response
-
-      booking_response[:user] = @booking_user
-      {success: true, data: booking_response}
-    else
-      {success: false, message: I18n.t("bookings.error")}
-    end
-  end
+  attr_reader :booking_user, :total_price, :customer_id, :payment_method_id, :booking_total, :booking_details
 
   private
 
-  def booking_with booking_details
+  def booking_with booking_details, flight_id, seat_type_id
     final_bookings = []
     total_price = 0
-    ActiveRecord::Base.transaction do
+    ActiveRecord::Base.transaction(joinable: false, requires_new: true) do
       booking_details.each_with_index do |booking, index|
-        booked = create_new_booking booking
+        booked = create_new_booking booking, flight_id, seat_type_id
         raise StandardError unless booked.save
 
         final_bookings << booked
@@ -39,27 +29,28 @@ class BookingService < ApplicationService
     end
     {
       total_price: total_price,
-      payment_method: final_bookings.first.method_name,
-      bookings: final_bookings
+      bookings: final_bookings,
+      payment_method: final_bookings.first.method_name
     }
   rescue StandardError
     false
   end
 
-  def create_new_booking booking_detail
+  def create_new_booking booking_detail, flight_id, seat_type_id
     extra_info = {
-      seat_number: generate_seat_number(@flight_id, booking_detail[:seat_type_id]),
-      total_price: calculate_total(@flight_id, booking_detail[:seat_type_id],
+      seat_number: generate_seat_number(flight_id, seat_type_id),
+      total_price: calculate_total(flight_id, seat_type_id,
                                    booking_detail[:service_ids]),
       booking_status_id: @payment_method_id,
       booking_dob: format_date(booking_detail[:booking_dob]),
-      flight_id: @flight_id,
+      flight_id: flight_id,
       payment_method_id: @payment_method_id,
-      customer_id: @customer_id
+      customer_id: @customer_id,
+      seat_type_id: seat_type_id
     }
     booking_detail.merge! extra_info
     new_booking = Booking.new booking_detail.except :service_ids
-    raise StandardError unless is_seat_available? @flight_id, new_booking
+    raise StandardError unless is_seat_available? flight_id, new_booking
 
     new_booking
   rescue StandardError
@@ -78,16 +69,6 @@ class BookingService < ApplicationService
     base_price * price_rate + service_fees
   end
 
-  def generate_seat_number flight_id, seat_type_id
-    if seat_type_id == Settings.bookings.normal_seat
-      reserved = Flight.find_by(id: flight_id).try(:normal_reserved_seat)
-      generate_seat_type reserved + 1, "A"
-    elsif seat_type_id == Settings.bookings.business_seat
-      reserved = Flight.find_by(id: flight_id).try(:business_reserved_seat)
-      generate_seat_type reserved + 1, "B"
-    end
-  end
-
   def generate_seat_type available, first_letter
     if available > Settings.flights.max_seat
       "#{first_letter}00#{available}"
@@ -98,8 +79,22 @@ class BookingService < ApplicationService
     end
   end
 
+  def generate_seat_number flight_id, seat_type_id
+    if seat_type_id == Settings.bookings.normal_seat
+      reserved = Flight.find_by(id: flight_id).try(:normal_reserved_seat)
+      generate_seat_type reserved + 1, Settings.bookings.normal_class
+    elsif seat_type_id == Settings.bookings.business_seat
+      reserved = Flight.find_by(id: flight_id).try(:business_reserved_seat)
+      generate_seat_type reserved + 1, Settings.bookings.business_class
+    end
+  end
+
   def get_services ids
     Service.search_by_id ids
+  end
+
+  def get_flight_departure_day flight_id
+    Flight.find_by(id: flight_id).try(:departure_day)
   end
 
   def is_seat_available? flight_id, booking

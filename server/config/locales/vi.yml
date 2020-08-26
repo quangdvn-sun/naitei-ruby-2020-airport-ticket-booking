@@ -5,6 +5,7 @@ vi:
   bookings:
     error: "Đã xảy ra lỗi khi đặt vé !!"
     none_bookings: "Bạn chưa đặt vé nào"
+    not_inbound: "Không phải chuyến bay khứ hồi !!"
   booking_mailer:
     payment_confirmation:
       subject: "Thông tin thanh toán"

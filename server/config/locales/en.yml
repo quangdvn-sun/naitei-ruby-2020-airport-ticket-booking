@@ -5,6 +5,7 @@ en:
   bookings:
     error: "An error occured while booking !!"
     none_bookings: "You haven't booked anything yet"
+    not_inbound: "These flights are not inbound !!"
   booking_mailer:
     payment_confirmation:
       subject: "Payment information"

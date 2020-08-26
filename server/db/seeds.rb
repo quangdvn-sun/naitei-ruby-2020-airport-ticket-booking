@@ -19,7 +19,7 @@ Customer.create(full_name: "Nhat Quang",
   full_name = Faker::Name.name
   email = "test#{n + 1}@gmail.com"
   password_digest = BCrypt::Password.create("123456")
-  phone = Faker::PhoneNumber.phone_number
+  phone = "09778604#{n}"
   age = rand(18..30)
   address = "#{Faker::Address.city}, #{Faker::Address.country}"
   Customer.create!(full_name: full_name,
