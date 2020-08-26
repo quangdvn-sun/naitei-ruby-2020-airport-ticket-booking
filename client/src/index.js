@@ -15,9 +15,9 @@ const store = configureStore();
 
 ReactDOM.render(
   <React.Fragment>
-    <Suspense fallback={null}>
+    <Suspense fallback={<LoadingIndicator />}>
       <Provider store={store}>
-        <Router history={history} >
+        <Router history={history}>
           <App />
         </Router>
       </Provider>

@@ -1,43 +1,75 @@
 import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
   DropdownMenu,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   DropdownItem,
   DropdownToggle,
   UncontrolledDropdown,
 } from 'reactstrap';
 import logo from '../../assets/images/logo.png';
+import SignUpModal from '../SignUpModal';
+import LogInModal from '../LogInModal';
 import './styles.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOut } from '../../store/actions';
 
 const Header = () => {
+  const { token, user } = useSelector(state => state.auth);
+
   const { t, i18n } = useTranslation();
 
-  const changeLanguage = (lng) => {
+  const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
 
+  const dispatch = useDispatch();
+
+  const guestSide = (
+    <React.Fragment>
+      <NavItem className="nav-item">
+        <SignUpModal />
+      </NavItem>
+
+      <NavItem className="nav-item">
+        <LogInModal />
+      </NavItem>
+    </React.Fragment>
+  );
+
+  const authSide = (
+    <React.Fragment>
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav>
+          <strong>
+            {t('header.welcome')} {`${user.full_name}`}
+          </strong>
+        </DropdownToggle>
+        <DropdownMenu right>
+          <DropdownItem>Profile</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem onClick={() => dispatch(signOut())}>
+            Sign Out
+          </DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
+    </React.Fragment>
+  );
+
   return (
     <Fragment>
-      <Navbar color='light' expand='sm' light>
-        <NavbarBrand href='/'>
-          <img src={logo} width='130' height='60' />
-        </NavbarBrand>
-        <Collapse navbar>
-          <Nav className='ml-auto' navbar>
-            <NavItem className='nav-item'>
-              <NavLink href='#'>{t('header.help')}</NavLink>
-            </NavItem>
+      <Navbar color="light" expand="sm" light>
+        <Link to="/">
+          <img src={logo} alt="Logo" width="130" height="60" />
+        </Link>
 
-            <NavItem className='nav-item'>
-              <NavLink href='#'>{t('header.signin')}</NavLink>
-            </NavItem>
+        <Collapse navbar>
+          <Nav className="ml-auto" navbar>
+            {token ? authSide : guestSide}
 
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

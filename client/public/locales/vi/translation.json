@@ -4,7 +4,8 @@
     "help": "Trợ giúp",
     "signin": "Đăng nhập",
     "eng": "Tiếng Anh",
-    "viet": "Tiếng Việt"
+    "viet": "Tiếng Việt",
+    "welcome": "Chào mừng,"
   },
   "footer": {
     "ror": "Ruby on Rails - Nhật Quang",
@@ -82,5 +83,13 @@
   },
   "customerInfo": {
     "submit": "Tiếp"
+  },
+  "logIn": {
+    "title": "Đăng nhập",
+    "email": "Email",
+    "password": "Mật khẩu"
+  },
+  "signUp": {
+    "title": "Đăng ký"
   }
 }

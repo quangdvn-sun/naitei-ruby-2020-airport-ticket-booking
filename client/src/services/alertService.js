@@ -3,12 +3,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const notifyError = message => {
   toast.error(message, {
-    position: toast.POSITION.TOP_RIGHT
+    position: toast.POSITION.TOP_RIGHT,
   });
-}
+};
 
 export const notifySuccess = message => {
   toast.success(message, {
-    position: toast.POSITION.TOP_RIGHT
+    position: toast.POSITION.TOP_RIGHT,
   });
-}
+};

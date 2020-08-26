@@ -17,7 +17,7 @@ import * as Yup from 'yup';
 const initialStates = {
   from: '',
   to: '',
-  type: '',
+  flight_type: '',
   first: '',
   second: '',
   ticket_number: 1,
@@ -26,16 +26,16 @@ const initialStates = {
 const validationSchema = Yup.object().shape({
   from: Yup.string().required('Please enter a departure location'),
   to: Yup.string().required('Please enter a arrival location'),
-  type: Yup.string().required('Please enter a flight type'),
+  flight_type: Yup.string().required('Please enter a flight type'),
   first: Yup.string().required('Please enter your first trip date'),
-  second: Yup.string().when('type', {
+  second: Yup.string().when('flight_type', {
     is: val => val === '2',
     then: Yup.string().required('Please enter your second trip date'),
     otherwise: Yup.string().nullable(),
   }),
-  ticket_number: Yup.number()
-    .integer()
-    .min(1)
+  ticket_number: Yup.number('Ticket number must be an integer')
+    .integer('Ticket number must be an integer')
+    .min(1, 'Ticket number must be an integer')
     .required('Please enter your booked tickets'),
 });
 
@@ -45,9 +45,9 @@ function RouteSelection() {
   const { t } = useTranslation();
 
   const handleSearchFlights = flightData => {
-    const { type, first, second, from, to, ticket_number } = flightData;
+    const { flight_type, first, second, from, to, ticket_number } = flightData;
     const flight = {
-      type: parseInt(type),
+      flight_type: parseInt(flight_type),
       time: {
         first,
         second,
@@ -57,7 +57,7 @@ function RouteSelection() {
         to,
       },
     };
-    parseInt(type) === flightType.oneWay
+    parseInt(flight_type) === flightType.oneWay
       ? dispatch(getOneWayFlights(flight))
       : dispatch(getRoundTripFlights(flight));
     dispatch(setTicketNumber(ticket_number));
@@ -72,7 +72,15 @@ function RouteSelection() {
           handleSearchFlights(values);
         }}
       >
-        {({ handleChange, handleSubmit, values, isValid, errors, touched }) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isValid,
+          errors,
+          touched,
+        }) => (
           <div className="booking-form">
             <Form onSubmit={handleSubmit}>
               <Row form>
@@ -86,10 +94,11 @@ function RouteSelection() {
                       type="select"
                       name="from"
                       id="from"
+                      onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.from || ''}
                     >
-                      <option value=''>
+                      <option value="">
                         {t('routeSeclection.destination')}
                       </option>
                       {destination.map((place, index) => (
@@ -114,10 +123,11 @@ function RouteSelection() {
                         type="select"
                         name="to"
                         id="to"
+                        onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.to || ''}
                       >
-                        <option value=''>
+                        <option value="">
                           {t('routeSeclection.destination')}
                         </option>
                         {destination
@@ -138,25 +148,26 @@ function RouteSelection() {
               <Row form>
                 <Col sm="6">
                   <FormGroup>
-                    <Label className="form-label required" for="type">
+                    <Label className="form-label required" for="flight_type">
                       {t('routeSeclection.flightTypes')}
                     </Label>
                     <Input
                       className="form-control"
                       type="select"
-                      name="type"
-                      id="type"
+                      name="flight_type"
+                      id="flight_type"
+                      onBlur={handleBlur}
                       onChange={handleChange}
-                      value={values.type || ''}
+                      value={values.flight_type || ''}
                     >
-                      <option value=''>{t('routeSeclection.types')}</option>
+                      <option value="">{t('routeSeclection.types')}</option>
                       <option value={1}>{t('routeSeclection.oneWay')}</option>
                       <option value={2}>
                         {t('routeSeclection.roundTrip')}
                       </option>
                     </Input>
-                    {touched.type && errors.type ? (
-                      <div className="error">{errors.type}</div>
+                    {touched.flight_type && errors.flight_type ? (
+                      <div className="error">{errors.flight_type}</div>
                     ) : null}
                   </FormGroup>
                 </Col>
@@ -171,6 +182,7 @@ function RouteSelection() {
                       min="1"
                       name="ticket_number"
                       id="ticket_number"
+                      onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.ticket_number}
                     />
@@ -192,6 +204,7 @@ function RouteSelection() {
                       name="first"
                       id="first"
                       min={formatDate(new Date())}
+                      onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.first || ''}
                     />
@@ -201,7 +214,7 @@ function RouteSelection() {
                   </FormGroup>
                 </Col>
                 <Col sm="6">
-                  {values.type === '2' && values.first ? (
+                  {values.flight_type === '2' && values.first ? (
                     <FormGroup>
                       <Label className="form-label required" for="second">
                         {t('routeSeclection.returnDate')}
@@ -212,6 +225,7 @@ function RouteSelection() {
                         name="second"
                         id="second"
                         min={formatDate(new Date(values.first))}
+                        onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.second || ''}
                       />
@@ -224,8 +238,8 @@ function RouteSelection() {
               </Row>
               <div className="form-btn">
                 <Button
-                  className='submit-btn'
-                  type='submit'
+                  className="submit-btn"
+                  type="submit"
                   disabled={!isValid || !values.first}
                 >
                   {t('routeSeclection.checkAvai')}
