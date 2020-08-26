@@ -4,7 +4,8 @@
     "help": "Help",
     "signin": "Sign In",
     "eng": "English",
-    "viet": "Vietnamese"
+    "viet": "Vietnamese",
+    "welcome": "Welcome,"
   },
   "footer": {
     "ror": "Ruby on Rails - Nhat Quang",
@@ -84,5 +85,13 @@
     "passenger": "Passenger information",
     "contact": "Contact information",
     "submit": "Next"
+  },
+  "logIn": {
+    "title": "Log In",
+    "email": "Email",
+    "password": "Password"
+  },
+  "signUp": {
+    "title": "Sign Up"
   }
 }

@@ -28,7 +28,6 @@ const flightReducer = (state = initialState, { type, payload }) => {
         type: payload.flight_type,
         firstRouteFlights: [...flights],
       };
-
     case GET_ROUND_TRIP_FLIGHTS_DATA:
       const { first, second } = payload;
       return {
@@ -39,7 +38,6 @@ const flightReducer = (state = initialState, { type, payload }) => {
         firstRouteFlights: [...first.flights],
         secondRouteFlights: [...second.flights],
       };
-
     default:
       return state;
   }
