@@ -1,5 +1,5 @@
 class Flight < ApplicationRecord
-  FLIGHTS_PARAMS = [:type, time: [:first, :second], locations: [:from, :to]].freeze
+  FLIGHTS_PARAMS = [:flight_type, time: [:first, :second], locations: [:from, :to]].freeze
 
   belongs_to :plane
   belongs_to :flight_route

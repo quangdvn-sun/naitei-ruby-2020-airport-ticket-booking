@@ -6,6 +6,8 @@ flights:
   max_seat: 100
   min_seat: 9
 bookings:
+  normal_class: "A"
+  business_class: "B"
   normal_seat: 1
   business_seat: 2
   fixed_money: 2

@@ -1,4 +1,6 @@
 class Api::V1::BookingsController < ApiController
+  include Api::V1::Concerns::BookingsResponse
+
   before_action :authenticate_token!, only: :index
 
   def index
@@ -13,25 +15,16 @@ class Api::V1::BookingsController < ApiController
   end
 
   def create
-    @booking_response = BookingService.new(booking_info_params).perform
+    if is_one_way_flight?
+      @booking_response = booking_one_way
 
-    if @booking_response[:success]
-      @booking_count = @booking_response[:data][:bookings].size
-      BookingMailer.payment_confirmation(@booking_response).deliver_now
+      render_booking_one_way_response
+    elsif is_round_trip_flight?
+      @booking_response = booking_round_trip
 
-      render :create, status: :ok
+      render_booking_round_trip_response
     else
-      render json: {success: @booking_response[:success], message: @booking_response[:message]}, status: :bad_request
+      render json: {success: false, message: I18n.t("flights.error")}, status: :not_found
     end
-  end
-
-  private
-
-  def booking_info_params
-    params.permit Booking::BOOKINGS_PARAMS
-  end
-
-  def has_bookings?
-    @pending_bookings.size.positive? || @success_bookings.size.positive?
   end
 end
