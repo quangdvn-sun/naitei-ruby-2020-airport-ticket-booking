@@ -15,11 +15,11 @@ class Api::V1::BookingsController < ApiController
   end
 
   def create
-    if is_one_way_flight?
+    if is_one_way_flight? booking_info_params
       @booking_response = booking_one_way
 
       render_booking_one_way_response
-    elsif is_round_trip_flight?
+    elsif is_round_trip_flight? booking_info_params
       @booking_response = booking_round_trip
 
       render_booking_round_trip_response

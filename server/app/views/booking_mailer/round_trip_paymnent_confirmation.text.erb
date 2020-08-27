@@ -4,7 +4,20 @@
 <%= t ".total_price" %>: <%= @total_price %>
 <%= t ".payment_method" %>: <%= @payment_method %>
 
-<% @bookings.each do |booking| %>
+<%= t ".first_departure_day" %>: <%= @first_departure_day %>
+<% @first_bookings.each do |booking| %>
+  <%= t ".plane" %>: <%= booking.plane.name %>
+  <%= t ".seat_number" %>: <%= booking.seat_number %>
+  <%= t ".booking_name" %>: <%= booking.booking_name %>
+  <%= t ".booking_dob" %>: <%= booking.booking_dob %>
+  <%= t ".booking_nation" %>: <%= booking.booking_nation %>
+  <%= t ".price" %>: <%= booking.total_price %>
+  <%= t ".seat_type" %>: <%= booking.seat_type_name %>
+  <%= t ".booking_status" %>: <%= booking.booking_status_name %>
+<% end %>
+
+<%= t ".second_departure_day" %>: <%= @second_departure_day %>
+<% @second_bookings.each do |booking| %>
   <%= t ".plane" %>: <%= booking.plane.name %>
   <%= t ".seat_number" %>: <%= booking.seat_number %>
   <%= t ".booking_name" %>: <%= booking.booking_name %>

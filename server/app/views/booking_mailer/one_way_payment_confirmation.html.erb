@@ -1,7 +1,8 @@
 <h2><%= t ".hello" %>, <%= @user[:name] %></h2>
 <p><%= t ".confirmation" %></p>
 <span><%= t ".total_price" %>: <%= @total_price %></span><br>
-<span><%= t ".payment_method" %>: <%= @payment_method %></span>
+<span><%= t ".payment_method" %>: <%= @payment_method %></span><br>
+<span><%= t ".departure_day" %>: <%= @departure_day %></span><br>
 <br><br>
 <% @bookings.each do |booking| %>
 <div style="margin-left:1em;">
