@@ -30,6 +30,7 @@ AllCops:
     - "app/views/layouts/*"
     - "app/views/booking_mailer/*"
     - "app/assets/**/*"
+    - "app/mailers/**"
     - "app/javascript/**/*"
     - ".idea/**/*"
     - "**/.DS_Store"

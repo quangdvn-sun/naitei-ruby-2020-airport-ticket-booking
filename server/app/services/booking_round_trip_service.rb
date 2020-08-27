@@ -14,6 +14,10 @@ class BookingRoundTripService < BookingService
       return {success: false, message: I18n.t("bookings.not_inbound")}
     end
 
+    unless get_flight_departure_day(first_flight_id) < get_flight_departure_day(second_flight_id)
+      return {success: false, message: I18n.t("bookings.error")}
+    end
+
     if booking_total == booking_details.size
       booking_response = set_response
       return {success: false, message: I18n.t("bookings.error")} unless booking_response
