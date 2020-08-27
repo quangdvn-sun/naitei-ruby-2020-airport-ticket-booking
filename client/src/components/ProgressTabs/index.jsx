@@ -14,6 +14,7 @@ const ProgressTabs = ({ activeTab }) => {
           label={item}
           key={index}
           index={index + 1}
+          completed={activeTab > index}
           active={activeTab === index}
         />
       ))}

@@ -1,0 +1,11 @@
+@import '../../../assets/stylesheets/variables';
+
+.myForm .form {
+  .checkbox {
+    margin-left: 3.4em;
+  }
+  span {
+    color: $gray-dark;
+    font-size: 0.9em;
+  }
+}

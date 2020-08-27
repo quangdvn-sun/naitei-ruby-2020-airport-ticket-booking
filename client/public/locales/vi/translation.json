@@ -45,7 +45,10 @@
     "allFlights": {
       "economy": "Hạng phổ thông",
       "business": "Hạng thương gia",
-      "selectFlight": "Chọn chuyến bay"
+      "selectFlight": "Chọn chuyến bay",
+      "selected": "Đã chọn",
+      "remained": "Chỉ còn lại ? ghế trống cho giá này",
+      "soldOut": "Hết vé"
     },
     "cartInfo": {
       "to": "đến",
@@ -60,6 +63,34 @@
     "bookingNav": {
       "next": "Đi tiếp",
       "back": "Quay lại"
+    },
+    "passengerHeader": {
+      "whoIsFlying": "Ai sẽ bay?",
+      "dataAndServices": "Dữ liệu hành khách và dịch vụ của bạn"
+    },
+    "customerHeader": {
+      "whoIsBooking": "Ai đặt chỗ?",
+      "contactInfo": "Thông tin liên lạc của bạn"
+    },
+    "customerForm": {
+      "title": "Thông tin liên hệ",
+      "fullName": "Họ và tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "nameDesc": "Vui lòng điền đầy đủ họ tên theo giấy tờ tùy thân.",
+      "phoneDesc": "Quý khách vui lòng cung cấp thông tin chính xác, hệ thống sẽ liên lạc và hỗ trợ Quý khách trong trường hợp cần thiết."
+    },
+    "passengerForm": {
+      "title": "Hành khách",
+      "fullName": "Họ và tên",
+      "dateOfBirth": "Ngày sinh",
+      "country": "Quốc tịch",
+      "chooseCountry": "Chọn quốc gia",
+      "nameDesc": "Vui lòng điền đầy đủ họ tên theo giấy tờ tùy thân.",
+      "services": "Các dịch vụ tùy chọn",
+      "luggage": "Thêm hành lý kí gửi",
+      "checkIn": "Check-in sớm",
+      "lounge": "Phòng chờ thương gia"
     }
   },
   "contactInfo": {

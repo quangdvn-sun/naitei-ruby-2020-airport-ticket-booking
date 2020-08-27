@@ -15,14 +15,14 @@ const CartInfo = ({ totalPrice }) => {
     type,
     locations: { from, to },
   } = useSelector(state => state.flight);
-  const { ticketNumber } = useSelector(state => state.booking);
+  const { booking_total } = useSelector(state => state.booking);
 
   const fromFullName = destination.find(item => item.subname === from).fullname,
     toFullName = destination.find(item => item.subname === to).fullname;
 
   return (
     <Col className="cartInfo" xs="3">
-      <img src={CityImage} alt="city image" />
+      <img src={CityImage} alt="city" />
       <div className="fromTo">
         <span>
           {fromFullName} {t('bookingSession.cartInfo.to')} {toFullName}
@@ -35,7 +35,7 @@ const CartInfo = ({ totalPrice }) => {
             }`
           )}
           &nbsp;|&nbsp;
-          {ticketNumber} {t('bookingSession.cartInfo.person')}
+          {booking_total} {t('bookingSession.cartInfo.person')}
         </span>
       </div>
       <div className="changeFlight">

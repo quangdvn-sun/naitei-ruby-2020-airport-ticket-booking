@@ -5,18 +5,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import './styles.scss';
 
-const BookingNav = () => {
+const BookingNav = ({ canProceed, onProceed, canGoBack, onSubmit }) => {
   const { t } = useTranslation();
 
   return (
     <div className="bookingNav">
-      <Button color="secondary" disabled>
-        <FontAwesomeIcon icon={faArrowLeft}/>&nbsp;&nbsp;
+      <Button color="primary" disabled={!canGoBack}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+        &nbsp;&nbsp;
         <strong>{t('bookingSession.bookingNav.back')}</strong>
       </Button>
-      <Button className="next" color="success">
+      <Button
+        className="next"
+        color="success"
+        disabled={!canProceed}
+        onClick={onProceed}
+      >
         <strong>{t('bookingSession.bookingNav.next')}</strong>&nbsp;&nbsp;
-        <FontAwesomeIcon icon={faArrowRight}/>
+        <FontAwesomeIcon icon={faArrowRight} />
       </Button>
     </div>
   );

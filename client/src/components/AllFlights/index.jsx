@@ -4,17 +4,19 @@ import Flight from './Flight';
 import { Row, Col } from 'reactstrap';
 import './styles.scss';
 
-const AllFlights = ({ flights, from, to, onTotalPriceChanged }) => {
-  const { t } = useTranslation();
-  const [chosenFlight, setChosenFlight] = useState(null);
-  const [chosenPrice, setChosenPrice] = useState(null);
+const initialState = {
+  index: null,
+  price: 0
+}
 
-  const chosenFlightChangedHandler = (value) => {
-    setChosenFlight(value);
+const AllFlights = ({ flights, from, to, onFlightChanged }) => {
+  const { t } = useTranslation();
+  const [chosenFlight, setChosenFlight] = useState(initialState);
+
+  const chosenFlightChangedHandler = newFlight => {
+    setChosenFlight({...chosenFlight, ...newFlight});
   }
-  const chosenPriceChangedHandler = (value) => {
-    setChosenPrice(value);
-  }
+
   return (
     <div className="allFlights">
       <Row>
@@ -33,9 +35,7 @@ const AllFlights = ({ flights, from, to, onTotalPriceChanged }) => {
           data={{ ...flight, from, to }}
           chosenFlight={chosenFlight}
           onChosenFlightChanged={chosenFlightChangedHandler}
-          chosenPrice={chosenPrice}
-          onChosenPriceChanged={chosenPriceChangedHandler}
-          onTotalPriceChanged={onTotalPriceChanged}
+          onFlightChanged={onFlightChanged}
         />
       ))}
     </div>

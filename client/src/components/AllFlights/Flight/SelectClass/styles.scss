@@ -1,8 +1,8 @@
 @import '../../../../assets/stylesheets/variables';
 
 .selectClass {
-  padding: 8px;
   cursor: pointer;
+  padding: 8px;
   border-radius: 4px;
   margin: 0 2px;
   color: white;
@@ -28,7 +28,19 @@
   }
 
   .price {
-    font-size: 1em;
+    font-weight: 700;
+  }
+
+  .remained {
+    position: relative;
+    top: 0.5em;
+    font-size: 0.8em;
+    font-weight: 300;
+  }
+
+  .soldOut {
+    width: 100%;
+    text-align: center;
     font-weight: 700;
   }
 }

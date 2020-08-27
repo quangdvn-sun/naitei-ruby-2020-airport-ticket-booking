@@ -7,12 +7,16 @@
   width: 100%;
   bottom: 0;
   background: $bottom-blue;
-  padding: 10px 200px; 
+  padding: 10px 200px;
 
   .next {
     float: right;
   }
   button {
     width: 120px;
+    transition: all 0.1s ease-in-out;
+  }
+  button.disabled {
+    background-color: $gray-disabled;
   }
 }
