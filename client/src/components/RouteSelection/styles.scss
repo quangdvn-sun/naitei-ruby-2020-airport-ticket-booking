@@ -20,6 +20,9 @@
       opacity: 0.9;
     }
   }
+  .submit-btn.disabled {
+    background-color: $gray-disabled;
+  }
   .form-group {
     position: relative;
     margin-bottom: 30px;

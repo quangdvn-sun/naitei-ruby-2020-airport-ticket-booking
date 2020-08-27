@@ -1,0 +1,38 @@
+@import '../../../assets/stylesheets/variables';
+
+.myForm {
+  width: 100%;
+  margin-bottom: 2em;
+  
+  .title {
+    border-radius: 4px 4px 0 0;
+    padding: 10px 20px;
+    background: $dark-light-blue;
+    color: white;
+    font-weight: 300;
+    font-size: 1.1em;
+  }
+  .form {
+    padding: 20px 20px 15px 20px;
+    background: white;
+    color: $gray-dark;
+    border-radius: 0 0 4px 4px;
+    
+    .form-label {
+      font-size: 0.9em;
+      line-height: 1;
+    }
+    .form-input {
+      color: $gray-dark;
+      font-size: 0.9em;
+    }
+    ::placeholder {
+      color: $gray-medium;
+      font-size: 0.9em;
+    }
+    .required:after {
+      content: ' *';
+      color: crimson;
+    }
+  }
+}

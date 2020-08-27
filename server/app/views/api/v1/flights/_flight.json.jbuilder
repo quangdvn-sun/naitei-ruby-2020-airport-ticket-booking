@@ -1,7 +1,9 @@
 json.id flight.id
 json.departure_day flight.departure_day
 json.departure_time flight.departure_time
+json.normal_total_seat flight.normal_seat_number
 json.normal_reserved_seat flight.normal_reserved_seat
+json.business_total_seat flight.business_seat_number
 json.business_reserved_seat flight.business_reserved_seat
 json.base_price flight.base_price
 json.plane flight.plane_name

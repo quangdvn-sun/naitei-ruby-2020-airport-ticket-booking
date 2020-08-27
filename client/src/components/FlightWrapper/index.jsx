@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Col } from 'reactstrap';
 import { useSelector } from 'react-redux';
 import FlightHeader from './FlightHeader';
 import AllFlights from '../AllFlights';
+import {
+  CHANGE_OUTBOUND_FLIGHT,
+  CHANGE_INBOUND_FLIGHT,
+} from '../../containers/BookingSession/types';
+import flightType from '../../constants/flightType.json';
 import './styles.scss';
 
-const FlightWrapper = ({ onTotalPriceChanged }) => {
+const FlightWrapper = ({ onFlightChanged }) => {
+  const { flight_type } = useSelector(state => state.booking);
   const {
     time,
     locations: { from, to },
@@ -20,17 +26,30 @@ const FlightWrapper = ({ onTotalPriceChanged }) => {
         from={from}
         to={to}
         flights={firstRouteFlights}
-        onTotalPriceChanged={onTotalPriceChanged}
+        onFlightChanged={payload =>
+          onFlightChanged({ type: CHANGE_OUTBOUND_FLIGHT, payload })
+        }
       />
-      <br />
-      <br />
-      <FlightHeader inbound from={to} to={from} departureDate={time.second} />
-      <AllFlights
-        from={to}
-        to={from}
-        flights={secondRouteFlights}
-        onTotalPriceChanged={onTotalPriceChanged}
-      />
+      {parseInt(flight_type) === flightType.roundTrip && (
+        <Fragment>
+          <br />
+          <br />
+          <FlightHeader
+            inbound
+            from={to}
+            to={from}
+            departureDate={time.second}
+          />
+          <AllFlights
+            from={to}
+            to={from}
+            flights={secondRouteFlights}
+            onFlightChanged={payload =>
+              onFlightChanged({ type: CHANGE_INBOUND_FLIGHT, payload })
+            }
+          />
+        </Fragment>
+      )}
     </Col>
   );
 };

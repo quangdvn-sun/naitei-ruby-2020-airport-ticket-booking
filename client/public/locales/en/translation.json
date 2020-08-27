@@ -45,7 +45,10 @@
     "allFlights": {
       "economy": "Economy Class",
       "business": "Business Class",
-      "selectFlight": "Select flight"
+      "selectFlight": "Select flight",
+      "selected": "Selected",
+      "remained": "Only ? remained seats for this price",
+      "soldOut": "Sold out"
     },
     "cartInfo": {
       "to": "to",
@@ -60,6 +63,34 @@
     "bookingNav": {
       "next": "Next",
       "back": "Back"
+    },
+    "passengerHeader": {
+      "whoIsFlying": "Who is flying?",
+      "dataAndServices": "Your passenger data and services"
+    },
+    "customerHeader": {
+      "whoIsBooking": "Who is booking?",
+      "contactInfo": "Your contact infomation"
+    },
+    "customerForm": {
+      "title": "Contact data",
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone number",
+      "nameDesc": "Please enter your full name as it appears on your passport.",
+      "phoneDesc": "We will contact you under the phone number stated above in case of flight irregularities or rebookings."
+    },
+    "passengerForm": {
+      "title": "Passenger",
+      "fullName": "Full name",
+      "dateOfBirth": "Date of birth",
+      "country": "Country of residence",
+      "chooseCountry": "Choose country",
+      "nameDesc": "Please enter your full name as it appears on your passport.",
+      "services": "Services",
+      "luggage": "Extra luggage",
+      "checkIn": "Priority check-in",
+      "lounge": "Business lounge"
     }
   },
   "contactInfo": {

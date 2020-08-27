@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import {
   getOneWayFlights,
   getRoundTripFlights,
-  setTicketNumber,
+  setBookingInfo,
 } from '../../store/actions';
 import formatDate from '../../utils/formatDate';
 import destination from '../../constants/destination.json';
@@ -60,7 +60,10 @@ function RouteSelection() {
     parseInt(flight_type) === flightType.oneWay
       ? dispatch(getOneWayFlights(flight))
       : dispatch(getRoundTripFlights(flight));
-    dispatch(setTicketNumber(ticket_number));
+    dispatch(setBookingInfo({
+      flightType: flight_type,
+      bookingTotal: ticket_number
+    }));
   };
 
   return (
@@ -238,8 +241,9 @@ function RouteSelection() {
               </Row>
               <div className="form-btn">
                 <Button
-                  className="submit-btn"
-                  type="submit"
+                  className='submit-btn'
+                  color='primary'
+                  type='submit'
                   disabled={!isValid || !values.first}
                 >
                   {t('routeSeclection.checkAvai')}
