@@ -17,7 +17,7 @@ export const setPassengerDetails = details => {
 
 export const submitBookingDetails = (bookings, details) => async dispatch => {
   try {
-    const { data } = await railsApi.post('/bookings', { ...bookings, ...details });
+    await railsApi.post('/bookings', { ...bookings, ...details });
     
     history.push('/');
     notifySuccess('Booking successful!');
