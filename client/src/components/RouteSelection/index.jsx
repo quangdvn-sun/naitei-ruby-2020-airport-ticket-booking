@@ -61,7 +61,7 @@ function RouteSelection() {
       ? dispatch(getOneWayFlights(flight))
       : dispatch(getRoundTripFlights(flight));
     dispatch(setBookingInfo({
-      flightType: flight_type,
+      flightType: parseInt(flight_type),
       bookingTotal: ticket_number
     }));
   };
