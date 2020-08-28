@@ -62,7 +62,8 @@
     },
     "bookingNav": {
       "next": "Đi tiếp",
-      "back": "Quay lại"
+      "back": "Quay lại",
+      "confirm": "Xác nhận"
     },
     "passengerHeader": {
       "whoIsFlying": "Ai sẽ bay?",
@@ -77,7 +78,7 @@
       "fullName": "Họ và tên",
       "email": "Email",
       "phone": "Số điện thoại",
-      "nameDesc": "Vui lòng điền đầy đủ họ tên theo giấy tờ tùy thân.",
+      "nameDesc": "Quý khách vui lòng điền đầy đủ họ tên theo giấy tờ tùy thân.",
       "phoneDesc": "Quý khách vui lòng cung cấp thông tin chính xác, hệ thống sẽ liên lạc và hỗ trợ Quý khách trong trường hợp cần thiết."
     },
     "passengerForm": {
@@ -86,34 +87,31 @@
       "dateOfBirth": "Ngày sinh",
       "country": "Quốc tịch",
       "chooseCountry": "Chọn quốc gia",
-      "nameDesc": "Vui lòng điền đầy đủ họ tên theo giấy tờ tùy thân.",
+      "nameDesc": "Quý khách vui lòng điền đầy đủ họ tên theo giấy tờ tùy thân.",
       "services": "Các dịch vụ tùy chọn",
       "luggage": "Thêm hành lý kí gửi",
       "checkIn": "Check-in sớm",
       "lounge": "Phòng chờ thương gia"
+    },
+    "paymentHeader": {
+      "lastStep": "Bước cuối trước khi cất cánh",
+      "paymentMethod": "Phương thức thanh toán"
+    },
+    "paymentForm": {
+      "title": "Phương thức thanh toán",
+      "choosePayment": "Chọn phương thức thanh toán yêu thích:"
     }
   },
-  "contactInfo": {
-    "title": "Thông tin liên hệ",
-    "name": "Tên",
-    "email": "Email",
-    "telephone": "Số điện thoại",
-    "address": "Địa chỉ",
-    "birth": "Ngày sinh",
-    "country": "Quốc tịch"
-  },
-  "passengerInfo": {
-    "title": "Thông tin hành khách",
-    "name": "Tên",
-    "service": "Dịch vụ",
-    "birth": "Ngày sinh",
-    "country": "Quốc tịch",
-    "service1": "Thêm hành lý",
-    "service2": "Ưu tiên check-in",
-    "service3": "Phòng chờ thương gia"
-  },
-  "customerInfo": {
-    "submit": "Tiếp"
+  "validations": {
+    "fullName": "Quý khách vui lòng điền họ tên đầy đủ của mình.",
+    "email": "Quý khách vui lòng điền địa chỉ Email của mình.",
+    "phoneNumber": {
+      "format": "Số điện thoại không đúng định dạng.",
+      "exist": "Quý khách vui lòng điền số điện thoại của mình."
+    },
+    "passengerName": "Quý khách vui lòng điền một tên hành khách hợp lệ.",
+    "dateOfBirth": "Quý khách vui lòng điền hoặc chọn một ngày tháng năm sinh hợp lệ.",
+    "country": "Quý khách vui lòng chọn một quốc tịch."
   },
   "logIn": {
     "title": "Đăng nhập",

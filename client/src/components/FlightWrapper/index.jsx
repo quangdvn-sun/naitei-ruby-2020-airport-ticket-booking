@@ -7,7 +7,7 @@ import {
   CHANGE_OUTBOUND_FLIGHT,
   CHANGE_INBOUND_FLIGHT,
 } from '../../containers/BookingSession/types';
-import flightType from '../../constants/flightType.json';
+import flightType from '../../constants/flightType';
 import './styles.scss';
 
 const FlightWrapper = ({ onFlightChanged }) => {

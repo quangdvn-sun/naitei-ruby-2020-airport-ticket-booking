@@ -1,4 +1,4 @@
-import { SET_BOOKING_INFO, SET_FLIGHT_DETAILS, SET_PASSENGER_DETAILS } from '../actions/types';
+import { SET_BOOKING_INFO, SET_FLIGHT_DETAILS, SET_PASSENGER_DETAILS, SET_PAYMENT_METHOD } from '../actions/types';
 
 const initialState = {
   booking_user: {
@@ -8,7 +8,7 @@ const initialState = {
   },
   flight_type: 2,
   customer_id: null,
-  payment_method_id: 1,
+  payment_method_id: null,
   flight_details: {
     first: {
       flight_id: null,
@@ -20,7 +20,7 @@ const initialState = {
     }
   },
   total_price: 0,
-  booking_total: 1,
+  booking_total: 2,
   booking_details: []
 };
 
@@ -41,8 +41,15 @@ const bookingReducer = (state = initialState, { type, payload }) => {
     case SET_PASSENGER_DETAILS:
       return {
         ...state,
+        total_price: payload.total_price,
         booking_user: payload.booking_user,
         booking_details: payload.booking_details
+      }
+    case SET_PAYMENT_METHOD:
+      return {
+        ...state,
+        payment_method_id: payload.payment_method_id,
+        customer_id: payload.customer_id
       }
     default:
       return state;

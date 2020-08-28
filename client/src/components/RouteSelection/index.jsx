@@ -10,8 +10,8 @@ import {
   setBookingInfo,
 } from '../../store/actions';
 import formatDate from '../../utils/formatDate';
-import destination from '../../constants/destination.json';
-import flightType from '../../constants/flightType.json';
+import destination from '../../constants/destination';
+import flightType from '../../constants/flightType';
 import * as Yup from 'yup';
 
 const initialStates = {

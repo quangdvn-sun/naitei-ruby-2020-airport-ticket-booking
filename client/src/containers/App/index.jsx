@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './styles.scss';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import ToastAlert from '../../components/Alert';
+import { ToastAlert } from '../../components/Alert';
 import BookingSession from '../BookingSession';
 import Welcome from '../Welcome';
 import { Route, Switch } from 'react-router-dom';

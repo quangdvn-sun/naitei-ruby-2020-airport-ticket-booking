@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
 import './styles.scss';
@@ -11,8 +11,19 @@ const CustomerForm = ({
   errors,
 }) => {
   const { t } = useTranslation();
+  const [active, setActive] = useState(false);
+
+  const handleInputBlur = event => {
+    setActive(false);
+    handleBlur(event);
+  };
+
+  const handleInputFocus = () => {
+    setActive(true);
+  };
+
   return (
-    <div className="myForm customerForm">
+    <div className={`myForm customerForm ${active ? 'active' : ''}`}>
       <div className="title">{t('bookingSession.customerForm.title')}</div>
       <div className="form">
         <FormGroup>
@@ -22,10 +33,14 @@ const CustomerForm = ({
           <Input
             name="customer.fullName"
             id="customer.fullName"
-            onChange={event => handleChange(event)}
-            onBlur={handleBlur}
+            onChange={handleChange}
+            onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
             value={values.customer.fullName}
-            invalid={touched.customer?.fullName && errors.customer?.fullName !== undefined}
+            invalid={
+              touched.customer?.fullName &&
+              errors.customer?.fullName !== undefined
+            }
             className="form-input"
             placeholder={t('bookingSession.customerForm.fullName')}
           />
@@ -41,10 +56,13 @@ const CustomerForm = ({
           <Input
             name="customer.email"
             id="customer.email"
-            onChange={event => handleChange(event)}
-            onBlur={handleBlur}
+            onChange={handleChange}
+            onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
             value={values.customer.email}
-            invalid={touched.customer?.email && errors.customer?.email !== undefined}
+            invalid={
+              touched.customer?.email && errors.customer?.email !== undefined
+            }
             placeholder={t('bookingSession.customerForm.email')}
             className="form-input"
           />
@@ -59,10 +77,13 @@ const CustomerForm = ({
           <Input
             name="customer.phone"
             id="customer.phone"
-            onChange={event => handleChange(event)}
-            onBlur={handleBlur}
+            onChange={handleChange}
+            onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
             value={values.customer.phone}
-            invalid={touched.customer?.phone && errors.customer?.phone !== undefined}
+            invalid={
+              touched.customer?.phone && errors.customer?.phone !== undefined
+            }
             placeholder={t('bookingSession.customerForm.phone')}
             className="form-input"
           />
@@ -72,7 +93,6 @@ const CustomerForm = ({
           <FormText>{t('bookingSession.customerForm.phoneDesc')}</FormText>
         </FormGroup>
       </div>
-      <br />
     </div>
   );
 };

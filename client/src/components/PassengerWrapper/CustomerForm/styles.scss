@@ -3,6 +3,7 @@
 .myForm {
   width: 100%;
   margin-bottom: 2em;
+  transition: box-shadow 0.2s ease-in-out;
   
   .title {
     border-radius: 4px 4px 0 0;
@@ -11,6 +12,7 @@
     color: white;
     font-weight: 300;
     font-size: 1.1em;
+    transition: background 0.2s ease-in-out;
   }
   .form {
     padding: 20px 20px 15px 20px;

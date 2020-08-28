@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
-import destination from '../../../constants/destination.json';
+import destination from '../../../constants/destination';
 import './styles.scss';
 
 const FlightHeader = ({ from, to, departureDate, inbound }) => {

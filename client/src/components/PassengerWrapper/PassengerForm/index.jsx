@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Row,
@@ -10,20 +10,38 @@ import {
   FormText,
 } from 'reactstrap';
 import formatDate from '../../../utils/formatDate';
-import countries from '../../../constants/countries.json';
+import countries from '../../../constants/countries';
+import serviceFees from '../../../constants/serviceFees';
 import './styles.scss';
 
 const PassengerForm = ({
   index,
   handleChange,
   handleBlur,
+  changeTotalPrice,
   values,
   touched,
   errors,
 }) => {
   const { t } = useTranslation();
+  const [active, setActive] = useState(false);
+
+  const handleServiceChanged = (event, isChosen, service) => {
+    changeTotalPrice(isChosen ? -serviceFees[service] : serviceFees[service]);
+    handleChange(event);
+  };
+
+  const handleInputBlur = event => {
+    setActive(false);
+    handleBlur(event);
+  };
+
+  const handleInputFocus = () => {
+    setActive(true);
+  };
+
   return (
-    <div className="myForm passengerForm">
+    <div className={`myForm passengerForm ${active ? 'active' : ''}`}>
       <div className="title">{t('bookingSession.passengerForm.title')}</div>
       <div className="form">
         <FormGroup>
@@ -34,8 +52,9 @@ const PassengerForm = ({
             name={`passengers[${index}].fullName`}
             id={`passengers[${index}].fullName`}
             className="form-input"
-            onChange={event => handleChange(event)}
-            onBlur={handleBlur}
+            onChange={handleChange}
+            onBlur={handleInputBlur}
+            onFocus={handleInputFocus}
             value={values.passengers[index].fullName}
             invalid={
               touched.passengers?.length &&
@@ -64,8 +83,9 @@ const PassengerForm = ({
                 name={`passengers[${index}].dateOfBirth`}
                 id={`passengers[${index}].dateOfBirth`}
                 max={formatDate(new Date())}
-                onChange={event => handleChange(event)}
-                onBlur={handleBlur}
+                onChange={handleChange}
+                onBlur={handleInputBlur}
+                onFocus={handleInputFocus}
                 className="form-input"
                 invalid={
                   touched.passengers?.length &&
@@ -93,8 +113,9 @@ const PassengerForm = ({
                 name={`passengers[${index}].country`}
                 id={`passengers[${index}].country`}
                 className="form-input"
-                onChange={event => handleChange(event)}
-                onBlur={handleBlur}
+                onChange={handleChange}
+                onBlur={handleInputBlur}
+                onFocus={handleInputFocus}
                 invalid={
                   touched.passengers?.length &&
                   touched.passengers[index]?.chooseCountry &&
@@ -129,7 +150,13 @@ const PassengerForm = ({
               type="checkbox"
               name={`passengers[${index}].luggage`}
               id={`passengers[${index}].luggage`}
-              onChange={handleChange}
+              onChange={event =>
+                handleServiceChanged(
+                  event,
+                  values.passengers[index].luggage,
+                  'luggage'
+                )
+              }
               value={values.passengers[index].luggage}
             />
             <span>{t('bookingSession.passengerForm.luggage')}</span>
@@ -141,7 +168,13 @@ const PassengerForm = ({
               type="checkbox"
               name={`passengers[${index}].checkIn`}
               id={`passengers[${index}].checkIn`}
-              onChange={handleChange}
+              onChange={event =>
+                handleServiceChanged(
+                  event,
+                  values.passengers[index].checkIn,
+                  'checkIn'
+                )
+              }
               value={values.passengers[index].checkIn}
             />
             <span>{t('bookingSession.passengerForm.checkIn')}</span>
@@ -153,7 +186,13 @@ const PassengerForm = ({
               type="checkbox"
               name={`passengers[${index}].lounge`}
               id={`passengers[${index}].lounge`}
-              onChange={handleChange}
+              onChange={event =>
+                handleServiceChanged(
+                  event,
+                  values.passengers[index].lounge,
+                  'lounge'
+                )
+              }
               value={values.passengers[index].lounge}
             />
             <span>{t('bookingSession.passengerForm.lounge')}</span>

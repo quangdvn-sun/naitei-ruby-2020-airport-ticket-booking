@@ -1,0 +1,42 @@
+.toastMessage {
+  z-index: 999;
+  position: relative;
+  bottom: 0.25em;
+  color: white;
+  
+  .icon {
+    font-size: 2em;
+    margin: 0 0.6em 0 0.4em;
+    vertical-align: text-top;
+  }
+  .text {
+    position: relative;
+    font-size: 0.9em;
+    bottom: 0.2em;
+    font-weight: 600;
+  }
+}
+
+.Toastify__toast-container {
+  opacity: 0.85;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.Toastify__toast {
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  }
+}
+
+.closeIcon {
+  font-size: 1.2em;
+  background: transparent;
+}

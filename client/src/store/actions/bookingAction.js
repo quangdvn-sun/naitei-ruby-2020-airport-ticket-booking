@@ -1,7 +1,12 @@
-import { SET_BOOKING_INFO, SET_FLIGHT_DETAILS, SET_PASSENGER_DETAILS } from './types';
+import {
+  SET_BOOKING_INFO,
+  SET_FLIGHT_DETAILS,
+  SET_PASSENGER_DETAILS,
+  SET_PAYMENT_METHOD,
+} from './types';
 import { railsApi } from '../../api/railsApi';
-import history from '../../utils/history';
 import { notifyError, notifySuccess } from '../../services/alertService';
+import history from '../../utils/history';
 
 export const setBookingInfo = info => {
   return { type: SET_BOOKING_INFO, payload: info };
@@ -15,13 +20,24 @@ export const setPassengerDetails = details => {
   return { type: SET_PASSENGER_DETAILS, payload: details };
 };
 
-export const submitBookingDetails = (bookings, details) => async dispatch => {
+export const setPaymentMethod = ({ method, customer_id }) => (
+  dispatch,
+  getState
+) => {
+  dispatch({
+    type: SET_PAYMENT_METHOD,
+    payload: { payment_method_id: method, customer_id },
+  });
+  return Promise.resolve(getState().booking);
+};
+
+export const postBookingDetails = details => async dispatch => {
   try {
-    await railsApi.post('/bookings', { ...bookings, ...details });
-    
+    const { data } = await railsApi.post('/bookings', details);
     history.push('/');
     notifySuccess('Booking successful!');
+    return Promise.resolve(data);
   } catch (err) {
     notifyError(err.response.data.message);
   }
-}
+};
