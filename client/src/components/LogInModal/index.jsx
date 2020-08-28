@@ -1,4 +1,10 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react';
+import React, {
+  Fragment,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -43,7 +49,7 @@ const validationSchema = yup.object().shape({
 function LogInModal() {
   const [modalOpen, setModal] = useState(false);
 
-  const toggle = () => setModal(!modalOpen);
+  const toggle = useCallback(() => setModal(!modalOpen), [modalOpen]);
 
   const dispatch = useDispatch();
 
@@ -58,13 +64,10 @@ function LogInModal() {
       toggle();
     }
 
-    if (error === 400) {
+    if (error === 400 || error === 404) {
       formikRef.current.setFieldValue('password', '');
-    } else if (error === 404) {
-      formikRef.current.setFieldValue('password', '');
-      formikRef.current.setFieldValue('email', '');
     }
-  }, [token, error]);
+  }, [token, error, toggle]);
 
   return (
     <Fragment>
