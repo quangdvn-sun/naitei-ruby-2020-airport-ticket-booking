@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import './styles.scss';
 
-const BookingNav = ({ canProceed, onProceed, canGoBack, onSubmit }) => {
+const BookingNav = ({ canProceed, onProceed, canGoBack, lastStep }) => {
   const { t } = useTranslation();
 
   return (
@@ -21,7 +21,12 @@ const BookingNav = ({ canProceed, onProceed, canGoBack, onSubmit }) => {
         disabled={!canProceed}
         onClick={onProceed}
       >
-        <strong>{t('bookingSession.bookingNav.next')}</strong>&nbsp;&nbsp;
+        <strong>
+          {lastStep
+            ? t('bookingSession.bookingNav.confirm')
+            : t('bookingSession.bookingNav.next')}
+        </strong>
+        &nbsp;&nbsp;
         <FontAwesomeIcon icon={faArrowRight} />
       </Button>
     </div>

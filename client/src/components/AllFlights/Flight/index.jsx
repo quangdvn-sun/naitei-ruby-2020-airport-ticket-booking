@@ -2,8 +2,8 @@ import React from 'react';
 import { Row, Col } from 'reactstrap';
 import SelectClass from './SelectClass';
 import FlightTime from './FlightTime';
-import priceRate from '../../../constants/priceRate.json';
-import seatType from '../../../constants/seatType.json';
+import priceRate from '../../../constants/priceRate';
+import seatType from '../../../constants/seatType';
 import './styles.scss';
 
 const Flight = ({

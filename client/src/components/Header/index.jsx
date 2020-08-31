@@ -45,9 +45,7 @@ const Header = () => {
     <React.Fragment>
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav>
-          <strong>
-            {t('header.welcome')} {`${user.full_name}`}
-          </strong>
+          {t('header.welcome')} {`${user.full_name}`}
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem>Profile</DropdownItem>

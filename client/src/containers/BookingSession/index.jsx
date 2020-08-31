@@ -4,19 +4,29 @@ import { Row } from 'reactstrap';
 import ProgressTabs from '../../components/ProgressTabs';
 import FlightWrapper from '../../components/FlightWrapper';
 import PassengerWrapper from '../../components/PassengerWrapper';
+import PaymentWrapper from '../../components/PaymentWrapper';
 import CartInfo from '../../components/CartInfo';
 import BookingNav from '../../components/BookingNav';
 import {
   CHANGE_STEP,
+  CHANGE_TOTAL_PRICE,
   CHANGE_OUTBOUND_FLIGHT,
-  CHANGE_INBOUND_FLIGHT
+  CHANGE_INBOUND_FLIGHT,
+  CHANGE_PAYMENT_METHOD,
+  CHANGE_PASSENGER_DETAILS,
 } from './types';
-import flightType from '../../constants/flightType.json';
+import flightType from '../../constants/flightType';
 import './styles.scss';
-import { setFlightDetails, setPassengerDetails, submitBookingDetails } from '../../store/actions';
+import {
+  setFlightDetails,
+  setPassengerDetails,
+  postBookingDetails,
+  setPaymentMethod,
+} from '../../store/actions';
 
 const initialState = {
   currentStep: 0,
+  payment_method: null,
   total_price: 0,
   flight_details: {
     first: {
@@ -27,7 +37,13 @@ const initialState = {
       flight_id: null,
       seat_type_id: null,
     },
-  }
+  },
+  booking_user: {
+    name: null,
+    email: null,
+    phone: null,
+  },
+  booking_details: [],
 };
 
 const reducer = (
@@ -36,9 +52,12 @@ const reducer = (
     type,
     payload: {
       currentStep,
+      payment_method,
       delta_price,
       flight_id,
       seat_type_id,
+      booking_user,
+      booking_details,
     },
   }
 ) => {
@@ -47,6 +66,16 @@ const reducer = (
       return {
         ...state,
         currentStep,
+      };
+    case CHANGE_PAYMENT_METHOD:
+      return {
+        ...state,
+        payment_method,
+      };
+    case CHANGE_TOTAL_PRICE:
+      return {
+        ...state,
+        total_price: state.total_price + delta_price,
       };
     case CHANGE_OUTBOUND_FLIGHT:
       return {
@@ -72,6 +101,12 @@ const reducer = (
           },
         },
       };
+    case CHANGE_PASSENGER_DETAILS:
+      return {
+        ...state,
+        booking_user,
+        booking_details,
+      };
     default:
       return state;
   }
@@ -83,7 +118,7 @@ const BookingSession = () => {
 
   const reduxDispatch = useDispatch();
   const { flight_type } = useSelector(state => state.booking);
-  const bookings = useSelector(state => state.booking);
+  const { user } = useSelector(state => state.auth);
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const canProceedFirstStep =
@@ -99,6 +134,10 @@ const BookingSession = () => {
     setProceedSecondStep(isValid);
   };
 
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const submitFlightDetails = () => {
     reduxDispatch(setFlightDetails(state));
     dispatch({
@@ -107,17 +146,34 @@ const BookingSession = () => {
         currentStep: state.currentStep + 1,
       },
     });
+    scrollTop();
   };
 
-  const submitPassengerDetails = payload => {
-    reduxDispatch(setPassengerDetails(payload));
+  const submitPassengerDetails = async payload => {
+    reduxDispatch(
+      setPassengerDetails({ ...payload, total_price: state.total_price })
+    );
+    dispatch({
+      type: CHANGE_PASSENGER_DETAILS,
+      payload,
+    });
     dispatch({
       type: CHANGE_STEP,
       payload: {
         currentStep: state.currentStep + 1,
       },
     });
-    reduxDispatch(submitBookingDetails(bookings, payload));
+    scrollTop();
+  };
+
+  const submitBookingDetails = async () => {
+    const details = await reduxDispatch(
+      setPaymentMethod({
+        method: state.payment_method,
+        customer_id: user.id,
+      })
+    );
+    reduxDispatch(postBookingDetails(details));
   };
 
   const bindSubmit = submitForm => {
@@ -144,12 +200,38 @@ const BookingSession = () => {
         bindSubmit={bindSubmit}
         proceedSecondStep={proceedSecondStepHandler}
         onSubmitDetails={submitPassengerDetails}
+        onTotalPriceChanged={price =>
+          dispatch({
+            type: CHANGE_TOTAL_PRICE,
+            payload: { delta_price: price },
+          })
+        }
       />
     );
     bookingNav = (
       <BookingNav
         onProceed={callSubmitForm}
         canProceed={canProceedSecondStep}
+        canGoBack
+      />
+    );
+  } else if (state.currentStep === 2) {
+    wrapper = (
+      <PaymentWrapper
+        paymentMethod={state.payment_method}
+        onPaymentMethodChanged={method =>
+          dispatch({
+            type: CHANGE_PAYMENT_METHOD,
+            payload: { payment_method: method },
+          })
+        }
+      />
+    );
+    bookingNav = (
+      <BookingNav
+        lastStep
+        onProceed={submitBookingDetails}
+        canProceed={state.paymentMethod !== null}
         canGoBack
       />
     );

@@ -2,48 +2,30 @@ import React from 'react';
 import { Form, Col } from 'reactstrap';
 import { Formik } from 'formik';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import PassengerHeader from './PassengerHeader';
 import PassengerForm from './PassengerForm';
 import CustomerHeader from './CustomerHeader';
 import CustomerForm from './CustomerForm';
-import allServices from '../../constants/services.json';
+import allServices from '../../constants/services';
 import './styles.scss';
 
-const validationSchema = Yup.object().shape({
-  customer: Yup.object().shape({
-    fullName: Yup.string().required('Please enter your full name.'),
-    email: Yup.string()
-      .label('Email')
-      .email()
-      .trim()
-      .required('Please enter your email.'),
-    phone: Yup.string()
-      .matches(/^[0-9]{7,11}$/, 'Phone number is not in correct format.')
-      .required('Please enter your phone number.'),
-  }),
-  passengers: Yup.array().of(
-    Yup.object().shape({
-      fullName: Yup.string().required('Please enter a valid name.'),
-      dateOfBirth: Yup.string().required(
-        'Please enter or choose a valid date of birth.'
-      ),
-      country: Yup.string().required('Please choose a country of residence.'),
-      luggage: Yup.boolean(),
-      checkin: Yup.boolean(),
-      lounge: Yup.boolean(),
-    })
-  ),
-});
-
-const PassengerWrapper = ({ bindSubmit, proceedSecondStep, onSubmitDetails }) => {
+const PassengerWrapper = ({
+  bindSubmit,
+  proceedSecondStep,
+  onSubmitDetails,
+  onTotalPriceChanged,
+}) => {
+  const { t } = useTranslation();
   const { booking_total } = useSelector(state => state.booking);
+  const { user } = useSelector(state => state.auth);
 
   const initialValues = {
     customer: {
-      fullName: '',
-      email: '',
-      phone: '',
+      fullName: user.full_name || '',
+      email: user.email || '',
+      phone: user.phone || '',
     },
     passengers: Array.from(Array(booking_total)).map(() => ({
       fullName: '',
@@ -53,7 +35,32 @@ const PassengerWrapper = ({ bindSubmit, proceedSecondStep, onSubmitDetails }) =>
       checkin: false,
       lounge: false,
     })),
-  }
+  };
+
+  const validationSchema = Yup.object().shape({
+    customer: Yup.object().shape({
+      fullName: Yup.string().required(t('validations.fullName')),
+      email: Yup.string()
+        .label('Email')
+        .email()
+        .trim()
+        .required(t('validations.email')),
+      phone: Yup.string()
+        .matches(/^[0-9]{7,11}$/, t('validations.phoneNumber.format'))
+        .required(t('validations.phoneNumber.exist')),
+    }),
+    passengers: Yup.array().of(
+      Yup.object().shape({
+        fullName: Yup.string().required(t('validations.passengerName')),
+        dateOfBirth: Yup.string().required(t('validations.dateOfBirth')),
+        country: Yup.string().required(t('validations.country')),
+        luggage: Yup.boolean(),
+        checkin: Yup.boolean(),
+        lounge: Yup.boolean(),
+      })
+    ),
+  });
+
   return (
     <Formik
       initialValues={initialValues}
@@ -64,7 +71,7 @@ const PassengerWrapper = ({ bindSubmit, proceedSecondStep, onSubmitDetails }) =>
           booking_user: {
             name: customer.fullName,
             email: customer.email,
-            phone: customer.phone
+            phone: customer.phone,
           },
           booking_details: passengers.map(passenger => {
             const services = [];
@@ -77,9 +84,9 @@ const PassengerWrapper = ({ bindSubmit, proceedSecondStep, onSubmitDetails }) =>
               booking_name: passenger.fullName,
               booking_dob: passenger.dateOfBirth,
               booking_nation: passenger.country,
-              service_ids: services
+              service_ids: services,
             };
-          })
+          }),
         };
         onSubmitDetails(details);
       }}
@@ -96,8 +103,8 @@ const PassengerWrapper = ({ bindSubmit, proceedSecondStep, onSubmitDetails }) =>
       }) => {
         bindSubmit(submitForm);
 
-        const handleFormChanged = async (event) => {
-          await handleChange(event);
+        const handleFormChanged = event => {
+          handleChange(event);
           proceedSecondStep(isValid);
         };
         return (
@@ -112,11 +119,13 @@ const PassengerWrapper = ({ bindSubmit, proceedSecondStep, onSubmitDetails }) =>
                 touched={touched}
               />
               <br />
+              <br />
               <PassengerHeader />
               {Array.from(Array(booking_total)).map((item, index) => (
                 <PassengerForm
                   handleBlur={handleBlur}
                   handleChange={handleFormChanged}
+                  changeTotalPrice={onTotalPriceChanged}
                   values={values}
                   key={index}
                   index={index}

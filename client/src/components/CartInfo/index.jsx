@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import CityImage from '../../assets/images/city.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane } from '@fortawesome/free-solid-svg-icons';
-import destination from '../../constants/destination.json';
-import flightType from '../../constants/flightType.json';
+import destination from '../../constants/destination';
+import flightType from '../../constants/flightType';
 import './styles.scss';
 
 const CartInfo = ({ totalPrice }) => {
@@ -47,7 +47,10 @@ const CartInfo = ({ totalPrice }) => {
           <strong>{t('bookingSession.cartInfo.total')}</strong>
         </span>
         <span className="number">
-          <strong>{totalPrice.toFixed(2)} {t('bookingSession.cartInfo.currency')}</strong>
+          <strong>
+            {Math.max(0, totalPrice).toFixed(2)}{' '}
+            {t('bookingSession.cartInfo.currency')}
+          </strong>
         </span>
         <br />
         <span className="include">{t('bookingSession.cartInfo.include')}</span>

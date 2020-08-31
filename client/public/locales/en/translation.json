@@ -62,7 +62,8 @@
     },
     "bookingNav": {
       "next": "Next",
-      "back": "Back"
+      "back": "Back",
+      "confirm": "Confirm"
     },
     "passengerHeader": {
       "whoIsFlying": "Who is flying?",
@@ -91,31 +92,28 @@
       "luggage": "Extra luggage",
       "checkIn": "Priority check-in",
       "lounge": "Business lounge"
+    },
+    "paymentHeader": {
+      "lastStep": "Last step before takeoff",
+      "paymentMethod": "Payment methods"
+    },
+    "paymentForm": {
+      "title": "Method of payment",
+      "choosePayment": "Choose your prefered method of payment:",
+      "useCreditCard": "Using credit card",
+      "useCash": "Using cash"
     }
   },
-  "contactInfo": {
-    "title": "Contact Information",
-    "name": "Name",
-    "email": "Email",
-    "telephone": "Telephone",
-    "address": "Address",
-    "birth": "Date of birth",
-    "country": "Country of residence"
-  },
-  "passengerInfo": {
-    "title": "Passenger Information",
-    "name": "Name",
-    "service": "Service",
-    "birth": "Date of birth",
-    "country": "Country of residence",
-    "service1": "Extra Luggage",
-    "service2": "Priority Check-in",
-    "service3": "Business Lounge"
-  },
-  "customerInfo": {
-    "passenger": "Passenger information",
-    "contact": "Contact information",
-    "submit": "Next"
+  "validations": {
+    "fullName": "Please enter your full name.",
+    "email": "Please enter your email.",
+    "phoneNumber": {
+      "format": "Phone number is not in correct format.",
+      "exist": "Please enter your phone number."
+    },
+    "passengerName": "Please enter a valid name.",
+    "dateOfBirth": "Please enter or choose a valid date of birth.",
+    "country": "Please choose a country of residence."
   },
   "logIn": {
     "title": "Log In",
