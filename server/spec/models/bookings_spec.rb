@@ -18,7 +18,7 @@ RSpec.describe Booking, type: :model do
   end
 
   describe "associations" do
-    it "should optinally belong to customer" do
+    it "should optionally belong to customer" do
       is_expected.to belong_to(:customer).optional
     end
     it "should belong to booking status" do

@@ -6,7 +6,7 @@ FactoryBot.define do
     booking_nation{Faker::Address.country}
     flight_id{FactoryBot.create(:flight).id}
     seat_type_id{FactoryBot.create(:seat_type, :normal).id}
-    seat_number{Faker::String}
+    seat_number{Faker::Code.npi}
     total_price{rand * 100 + 1}
     payment_method_id{FactoryBot.create(:payment_method, :cash).id}
     booking_status_id{FactoryBot.create(:booking_status).id}

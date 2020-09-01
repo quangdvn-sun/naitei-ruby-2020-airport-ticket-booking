@@ -16,5 +16,4 @@ class Flight < ApplicationRecord
 
   scope :search_by_day, ->(dates){where departure_day: dates}
   scope :search_by_route, ->(flight_routes){where flight_route_id: flight_routes}
-  scope :order_flights, ->{order id: Settings.flights.flight_order}
 end
