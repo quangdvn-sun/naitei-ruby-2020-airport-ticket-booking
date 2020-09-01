@@ -31,6 +31,8 @@ validations:
     phone_minlength: 7
     phone_maxlength: 11
     password_minlength: 6
-    password_maxlength: 15
-    default_password: "123456"
-    default_phone: "0977860499"
+    password_maxlength: 15    
+test:
+  default_password: "123456"
+  default_phone: "0977860499"
+  default_seat_number: 100

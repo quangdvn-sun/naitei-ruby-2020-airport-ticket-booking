@@ -233,7 +233,7 @@ end
     booking_name = Faker::Name.name
   end
   booking_nation = Faker::Address.country
-  booking_dob = rand(50.years).seconds.ago.to_time.to_s
+  booking_dob = rand(50.years).seconds.ago.in_time_zone.to_s
   seat_type_id = rand(1..2)
   flight_id = rand(1..500)
   seat_number = rand_seat_number flight_id, seat_type_id
