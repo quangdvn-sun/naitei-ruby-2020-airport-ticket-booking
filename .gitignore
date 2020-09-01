@@ -32,7 +32,6 @@ server/.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 server/config/master.key
-server/config/database.yml
 
 server/public/packs
 server/public/packs-test
@@ -56,7 +55,6 @@ server/.DS_Store
 server/config/application.yml
 
 server/node_modules
-server/spec
+!server/spec
 !server/spec/rails_helper.rb
 !server/spec/spec_helper.rb
-server/config/database.yml

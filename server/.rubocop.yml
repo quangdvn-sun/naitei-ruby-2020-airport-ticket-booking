@@ -21,6 +21,7 @@ AllCops:
     - "app/services/*"
   Exclude:
     - "vendor/**/*"
+    - "server/vendor/**/*"
     - "config/unicorn.rb"
     - "bin/*"
     - "db/**/*"

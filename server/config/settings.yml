@@ -32,3 +32,5 @@ validations:
     phone_maxlength: 11
     password_minlength: 6
     password_maxlength: 15
+    default_password: "123456"
+    default_phone: "0977860499"
