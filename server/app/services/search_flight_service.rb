@@ -16,6 +16,5 @@ class SearchFlightService < ApplicationService
   def find_flight departure_date, flight_route
     Flight.search_by_day(departure_date)
           .search_by_route(flight_route)
-          .order_flights
   end
 end
