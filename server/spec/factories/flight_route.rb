@@ -7,10 +7,14 @@ FactoryBot.define do
   trait :hn_hcm do
     association :departure, :hn_airport, factory: :airport
     association :arrive, :hcm_airport, factory: :airport
+    departure_id{Location.first.id}
+    arrive_id{Location.second.id}
   end
 
   trait :hcm_hn do
     association :departure, :hcm_airport, factory: :airport
     association :arrive, :hn_airport, factory: :airport
+    departure_id{Location.second.id}
+    arrive_id{Location.first.id}
   end
 end

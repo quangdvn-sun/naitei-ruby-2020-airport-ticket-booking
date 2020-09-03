@@ -9,4 +9,12 @@ FactoryBot.define do
     flight_status_id{FactoryBot.create(:flight_status, :underpart).id}
     flight_route_id{FactoryBot.create(:flight_route, :hn_hcm).id}
   end
+
+  trait :hn_hcm_route do
+    flight_route_id{FactoryBot.create(:flight_route, :hn_hcm).id}
+  end
+
+  trait :hcm_hn_route do
+    flight_route_id{FactoryBot.create(:flight_route, :hcm_hn).id}
+  end
 end
