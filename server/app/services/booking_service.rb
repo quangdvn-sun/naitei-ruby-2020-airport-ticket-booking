@@ -41,11 +41,11 @@ class BookingService < ApplicationService
       seat_number: generate_seat_number(flight_id, seat_type_id),
       total_price: calculate_total(flight_id, seat_type_id,
                                    booking_detail[:service_ids]),
-      booking_status_id: @payment_method_id,
+      booking_status_id: payment_method_id,
       booking_dob: format_date(booking_detail[:booking_dob]),
       flight_id: flight_id,
-      payment_method_id: @payment_method_id,
-      customer_id: @customer_id,
+      payment_method_id: payment_method_id,
+      customer_id: customer_id,
       seat_type_id: seat_type_id
     }
     booking_detail.merge! extra_info

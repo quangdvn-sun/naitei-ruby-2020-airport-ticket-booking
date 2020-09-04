@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "API V1 Bookings", type: :request do
+RSpec.describe "API V1 Customers Bookings", type: :request do
   let!(:first_flight){FactoryBot.create :flight, :hn_hcm_route, departure_day: "2020/09/10"}
   let!(:second_flight){FactoryBot.create :flight, :hcm_hn_route, departure_day: "2020/09/20"}
   let!(:user){FactoryBot.create :customer}
@@ -11,8 +11,8 @@ RSpec.describe "API V1 Bookings", type: :request do
   let!(:business_seat){FactoryBot.create :seat_type, :business}
   let!(:payment_method){FactoryBot.create :payment_method, :credit_card}
   let!(:booking_status){FactoryBot.create :booking_status, :success}
-  
-  describe "POST /api/v1/bookings" do
+
+  describe "POST /api/v1/customers/bookings" do
     context "with valid parameters" do
       let(:valid_params) do {
         "booking_user" => {
@@ -53,7 +53,7 @@ RSpec.describe "API V1 Bookings", type: :request do
       }
       end
 
-      before{post "/api/v1/bookings", params: valid_params, as: :json}
+      before{post "/api/v1/customers/bookings", params: valid_params, as: :json}
       
       it "should return success status" do
         expect_status 200
@@ -142,7 +142,7 @@ RSpec.describe "API V1 Bookings", type: :request do
         expect_status 400
       end
 
-      before{post "/api/v1/bookings", params: valid_params, as: :json}
+      before{post "/api/v1/customers/bookings", params: valid_params, as: :json}
 
       it "should return valid json types" do
         expect_json(success: false, message: "An error occured while booking !!")
@@ -150,7 +150,7 @@ RSpec.describe "API V1 Bookings", type: :request do
     end
   end
 
-  describe "GET /api/v1/bookings" do
+  describe "GET /api/v1/customers/bookings" do
     let!(:valid_params) do {
       "booking_user" => {
         "name" => user.full_name,
@@ -192,8 +192,8 @@ RSpec.describe "API V1 Bookings", type: :request do
 
     context "with valid token" do
       before do
-        post "/api/v1/bookings", params: valid_params, as: :json
-        get "/api/v1/bookings", headers: { Authorization: "Bearer #{JsonWebToken.encode id: user.id}" }
+        post "/api/v1/customers/bookings", params: valid_params, as: :json
+        get "/api/v1/customers/bookings", headers: {Authorization: "Bearer #{JsonWebToken.encode id: user.id}"}
       end
 
       it "should return success status" do
@@ -221,8 +221,8 @@ RSpec.describe "API V1 Bookings", type: :request do
 
     context "with invalid token" do
       it "should return unauthorized status" do
-        post "/api/v1/bookings", params: valid_params, as: :json
-        get "/api/v1/bookings"
+        post "/api/v1/customers/bookings", params: valid_params, as: :json
+        get "/api/v1/customers/bookings"
         expect_status 401
       end
     end

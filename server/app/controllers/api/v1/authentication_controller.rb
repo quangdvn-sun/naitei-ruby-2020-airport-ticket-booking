@@ -1,9 +1,9 @@
 class Api::V1::AuthenticationController < ApiController
-  before_action :authenticate_token!, only: :show
+  before_action :authenticate_customer!, only: :show
 
   def create
     customer = Customer.find_by email: params[:email]
-    if customer&.authenticate params[:password]
+    if customer&.valid_password? params[:password]
       valid_token = JsonWebToken.encode id: customer.id
       render json: {success: true, token: valid_token}, status: :ok
     elsif customer.nil?
@@ -14,6 +14,7 @@ class Api::V1::AuthenticationController < ApiController
   end
 
   def show
+    @current_customer = current_customer
     render :show
   end
 end

@@ -1,4 +1,8 @@
 class Customer < ApplicationRecord
+  extend Devise::Models
+
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   VALID_EMAIL_REGEX = Settings.validations.user.email_regex
   VALID_PHONE_REGEX = Settings.validations.user.phone_regex
   CUSTOMERS_PARAMS = %i(full_name email password password_confirmation phone address age).freeze
@@ -32,8 +36,6 @@ class Customer < ApplicationRecord
             numericality: {only_integer: true, greater_than_or_equal_to: Settings.validations.user.min_age}
 
   before_save :downcase_email
-
-  has_secure_password
 
   private
 

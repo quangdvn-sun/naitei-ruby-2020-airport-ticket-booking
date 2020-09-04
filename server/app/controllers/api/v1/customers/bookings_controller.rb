@@ -1,11 +1,11 @@
-class Api::V1::BookingsController < ApiController
+class Api::V1::Customers::BookingsController < ApiController
   include Api::V1::Concerns::BookingsResponse
 
-  before_action :authenticate_token!, only: :index
+  before_action :authenticate_customer!, only: :index
 
   def index
-    @pending_bookings = Booking.search_by_id(@current_customer.id).is_pending
-    @success_bookings = Booking.search_by_id(@current_customer.id).is_success
+    @pending_bookings = Booking.search_by_id(current_customer.id).is_pending
+    @success_bookings = Booking.search_by_id(current_customer.id).is_success
 
     if has_bookings?
       render :index, status: :ok
