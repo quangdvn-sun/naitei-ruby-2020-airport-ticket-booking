@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "API V1 Flights", type: :request do
-  describe "POST /api/v1/flights" do
+RSpec.describe "API V1 Customers Flights", type: :request do
+  describe "POST /api/v1/customers/flights" do
     let(:first_flight){FactoryBot.create :flight, :hn_hcm_route, departure_day: "2020/09/10"}
     let(:second_flight){FactoryBot.create :flight, :hcm_hn_route, departure_day: "2020/09/20"}
 
@@ -22,7 +22,7 @@ RSpec.describe "API V1 Flights", type: :request do
       }
       end
 
-      before{post "/api/v1/flights", params: valid_params, as: :json}
+      before{post "/api/v1/customers/flights", params: valid_params, as: :json}
 
       it "should return success status" do
         expect_status 200
@@ -50,7 +50,7 @@ RSpec.describe "API V1 Flights", type: :request do
       }
       end
 
-      before{post "/api/v1/flights", params: invalid_params, as: :json}
+      before{post "/api/v1/customers/flights", params: invalid_params, as: :json}
 
       it "should return not found status" do
         expect_status 404

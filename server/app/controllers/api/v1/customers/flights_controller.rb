@@ -1,4 +1,4 @@
-class Api::V1::FlightsController < ApiController
+class Api::V1::Customers::FlightsController < ApiController
   include Api::V1::Concerns::FlightsResponse
 
   def create

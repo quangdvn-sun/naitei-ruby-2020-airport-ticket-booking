@@ -10,7 +10,7 @@ Staff.create!(full_name: "Quang Nhat",
 
 Customer.create(full_name: "Nhat Quang",
   email: "quangdvn@gmail.com",
-  password_digest: BCrypt::Password.create("123456"),
+  password: "123456",
   phone: "0977860499",
   age: 20,
   address: "Ha Noi, Viet Nam")
@@ -18,13 +18,12 @@ Customer.create(full_name: "Nhat Quang",
 49.times do |n|
   full_name = Faker::Name.name
   email = "test#{n + 1}@gmail.com"
-  password_digest = BCrypt::Password.create("123456")
   phone = "09778604#{n}"
   age = rand(18..30)
   address = "#{Faker::Address.city}, #{Faker::Address.country}"
   Customer.create!(full_name: full_name,
   email: email,
-  password_digest: password_digest,
+  password: "123456",
   phone: phone,
   age: age,
   address: address)
