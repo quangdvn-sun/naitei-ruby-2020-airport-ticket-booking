@@ -30,4 +30,4 @@ jobs:
         run: |
               cd server
               DATABASE_USERNAME=root DATABASE_PASSWORD=root DEVELOPMENT_DATABASE_NAME=server_development TEST_DATABASE_NAME=server_test bundle exec rails db:create
-              DATABASE_USERNAME=root DATABASE_PASSWORD=root DEVELOPMENT_DATABASE_NAME=server_development TEST_DATABASE_NAME=server_test bundle exec rspec
+              DATABASE_USERNAME=root DATABASE_PASSWORD=root DEVELOPMENT_DATABASE_NAME=server_development TEST_DATABASE_NAME=server_test HOST_EMAIL=noreply@example.com HOST=localhost:3000 MAIL_USER_NAME=05bcc6a3209edc MAIL_PASSWORD=92b511f145e80b MAIL_ADDRESS=smtp.mailtrap.io MAIL_DOMAIN=smtp.mailtrap.io MAIL_PORT=587 bundle exec rspec

@@ -35,4 +35,4 @@ validations:
 test:
   default_password: "123456"
   default_phone: "0977860499"
-  default_seat_number: 100
+  default_seat_number: 70
