@@ -5,7 +5,7 @@ import { notifyError } from '../../services/alertService';
 
 export const getOneWayFlights = flightData => async dispatch => {
   try {
-    const { data } = await railsApi.post('/flights', { flight: flightData });
+    const { data } = await railsApi.post('/customers/flights', { flight: flightData });
 
     dispatch({
       type: GET_ONE_WAY_FLIGHTS_DATA,
@@ -23,7 +23,7 @@ export const getOneWayFlights = flightData => async dispatch => {
 
 export const getRoundTripFlights = flightData => async dispatch => {
   try {
-    const { data } = await railsApi.post('/flights', { flight: flightData });
+    const { data } = await railsApi.post('/customers/flights', { flight: flightData });
 
     dispatch({
       type: GET_ROUND_TRIP_FLIGHTS_DATA,

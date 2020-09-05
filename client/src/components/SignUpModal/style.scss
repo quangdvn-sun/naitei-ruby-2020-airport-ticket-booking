@@ -1,0 +1,31 @@
+@import '../../assets/stylesheets/variables';
+
+.modalHeader {
+  h5 {
+    font-weight: 600;
+    color: $dark-blue;
+  }
+  .icon {
+    margin-right: 0.4em;
+  }
+}
+
+.modalForm {
+  .form-label {
+    line-height: 1;
+  }
+  .form-input {
+    color: $gray-dark;
+  }
+  ::placeholder {
+    color: $gray-medium;
+    font-size: 0.9em;
+  }
+  .required:after {
+    content: ' *';
+    color: crimson;
+  }
+  button {
+    transition: all 0.1s ease-in-out;
+  }
+}

@@ -53,17 +53,15 @@ export const signUp = signUpData => async dispatch => {
     localStorage.setItem('token', data.token);
 
     dispatch({ type: SIGN_UP_SUCCESS, payload: data.token });
+    notifySuccess('Sign up successful !!');
+    history.push('/');
   } catch (err) {
     if (err.response.status === 400) {
-      dispatch({
-        type: SIGN_UP_ERROR,
-        payload: err.response.data.error,
-      });
+      dispatch({ type: SIGN_UP_ERROR, payload: 400 });
+      notifyError(err.response.data.message);
     } else {
-      dispatch({
-        type: SIGN_UP_ERROR,
-        payload: 'Something went wrong ..',
-      });
+      dispatch({ type: SIGN_UP_ERROR, payload: 500 });
+      notifyError('Something went wrong ..');
     }
   }
 };

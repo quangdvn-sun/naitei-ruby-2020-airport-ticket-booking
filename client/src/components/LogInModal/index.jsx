@@ -12,6 +12,7 @@ import {
   ModalHeader,
   ModalBody,
   FormGroup,
+  FormFeedback,
   Form,
   Label,
   Input,
@@ -21,6 +22,8 @@ import { Formik } from 'formik';
 import { useSelector, useDispatch } from 'react-redux';
 import { logIn } from '../../store/actions';
 import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import './style.scss';
 
 const initialStates = {
@@ -48,22 +51,26 @@ const validationSchema = yup.object().shape({
 
 function LogInModal() {
   const [modalOpen, setModal] = useState(false);
-
-  const toggle = useCallback(() => setModal(!modalOpen), [modalOpen]);
-
   const dispatch = useDispatch();
-
   const { token, error } = useSelector(state => state.auth);
-
   const { t } = useTranslation();
-
   const formikRef = useRef();
+
+  const toggle = useCallback(() => {
+    if (modalOpen) {
+      formikRef.current.resetForm({
+        values: initialStates,
+        touched: null,
+        errors: null,
+      });
+    }
+    setModal(!modalOpen);
+  }, [modalOpen]);
 
   useEffect(() => {
     if (token) {
       toggle();
     }
-
     if (error === 400 || error === 404) {
       formikRef.current.setFieldValue('password', '');
     }
@@ -93,9 +100,12 @@ function LogInModal() {
               {t('logIn.title')}
             </NavLink>
             <Modal isOpen={modalOpen} toggle={toggle}>
-              <ModalHeader toggle={toggle}> {t('logIn.title')}</ModalHeader>
+              <ModalHeader className="modalHeader" toggle={toggle}>
+                <FontAwesomeIcon icon={faSignInAlt} className="icon" />
+                {t('logIn.title')}
+              </ModalHeader>
               <ModalBody>
-                <Form onSubmit={handleSubmit}>
+                <Form className="modalForm" onSubmit={handleSubmit}>
                   <FormGroup>
                     <Label for="email"> {t('logIn.email')}</Label>
                     <Input
@@ -105,12 +115,14 @@ function LogInModal() {
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      placeholder="Enter your email ..."
-                      className="mb-3"
+                      invalid={
+                        touched.email && errors.email !== undefined
+                      }
+                      placeholder={t('logIn.emailPlaceholder')}
                     />
-                    {touched.email && errors.email ? (
-                      <div className="error">{errors.email}</div>
-                    ) : null}
+                    {touched.email && errors.email && (
+                      <FormFeedback>{errors.email}</FormFeedback>
+                    )}
                   </FormGroup>
                   <FormGroup>
                     <Label for="password">{t('logIn.password')}</Label>
@@ -121,17 +133,18 @@ function LogInModal() {
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      placeholder="Enter your password ..."
-                      className="mb-3"
+                      invalid={
+                        touched.password && errors.password !== undefined
+                      }
+                      placeholder={t('logIn.passwordPlaceholder')}
                     />
-                    {touched.password && errors.password ? (
-                      <div className="error">{errors.password}</div>
-                    ) : null}
+                    {touched.password && errors.password && (
+                      <FormFeedback>{errors.password}</FormFeedback>
+                    )}
                   </FormGroup>
                   <Button
                     block
-                    color="success"
-                    style={{ marginTop: '2rem' }}
+                    color="primary"
                     type="submit"
                     disabled={!isValid || !values.email}
                   >
