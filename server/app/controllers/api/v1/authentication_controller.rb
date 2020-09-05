@@ -1,6 +1,4 @@
 class Api::V1::AuthenticationController < ApiController
-  before_action :authenticate_customer!, only: :show
-
   def create
     customer = Customer.find_by email: params[:email]
     if customer&.valid_password? params[:password]
