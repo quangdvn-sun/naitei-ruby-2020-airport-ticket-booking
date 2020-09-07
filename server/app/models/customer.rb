@@ -5,7 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   VALID_EMAIL_REGEX = Settings.validations.user.email_regex
   VALID_PHONE_REGEX = Settings.validations.user.phone_regex
-  CUSTOMERS_PARAMS = %i(full_name email password password_confirmation phone address age).freeze
+  CUSTOMERS_CREATE_PARAMS = %i(full_name email password password_confirmation phone address age).freeze
+  CUSTOMERS_UPDATE_PARAMS = %i(full_name phone address age).freeze
 
   has_many :bookings, dependent: :destroy
 

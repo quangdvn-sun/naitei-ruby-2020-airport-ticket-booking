@@ -46,6 +46,8 @@ en:
   customers:
     invalid_token: "Invalid Token"
     unable_create: "Unable to create this Account"
+    unable_update: "Unable to update this Account"
     unavailable: "Unavailable Customer"
     not_found: "Account not found"
     incorrect_password: "Incorrect password"
+    forbidden: "You can't do this action"

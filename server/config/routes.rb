@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         resources :bookings, only: %i(index create)
       end
       post "/signup", to: "customers#create"
+      resources :customers, only: :update
       scope :auth do
         post "/login", to: "authentication#create"
         get "/me", to: "authentication#show"

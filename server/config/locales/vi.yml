@@ -46,6 +46,8 @@ vi:
   customers:
     invalid_token: "Token không tồn tại"
     unable_create: "Không thể tạo tài khoản này"
+    unable_update: "Không thể cập nhật tài khoản này"
     unavailable: "Khách hàng không tồn tại"
     not_found: "Tài khoản không tồn tại"
     incorrect_password: "Mật khẩu sai"
+    forbidden: "Bạn không được phép thực hiện hành động này"
