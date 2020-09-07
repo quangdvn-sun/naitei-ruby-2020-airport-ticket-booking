@@ -3,6 +3,8 @@
     "languages": "Ngôn ngữ",
     "help": "Trợ giúp",
     "signin": "Đăng nhập",
+    "signOut": "Đăng xuất",
+    "profile": "Profile",
     "eng": "Tiếng Anh",
     "viet": "Tiếng Việt",
     "welcome": "Chào mừng,"
@@ -134,6 +136,10 @@
     "emailPlaceholder": "Nhập email của bạn",
     "passwordPlaceholder": "Nhập mật khẩu của bạn"
   },
+  "profilePage": {
+    "basicInfo": "Thông tin cá nhân",
+    "bookingHistory": "Lịch sử đặt vé"
+  },
   "signUp": {
     "title": "Đăng ký",
     "fullName": "Họ và tên",
@@ -150,5 +156,19 @@
     "addressPlaceholder": "Nhập địa chỉ của bạn",
     "age": "Tuổi",
     "agePlaceholder": "Nhập tuổi của bạn"
+  },
+  "editProfile": {
+    "title": "Chỉnh sửa thông tin cá nhân",
+    "fullName": "Họ và tên",
+    "namePlaceholder": "Nhập tên của bạn",
+    "email": "Địa chỉ Email",
+    "emailPlaceholder": "Nhập email của bạn",
+    "phone": "Số điện thoại",
+    "phonePlaceholder": "Nhập số điện thoại của bạn",
+    "address": "Địa chỉ",
+    "addressPlaceholder": "Nhập địa chỉ của bạn",
+    "age": "Tuổi",
+    "agePlaceholder": "Nhập tuổi của bạn",
+    "update": "Cập nhật thông tin"
   }
 }
