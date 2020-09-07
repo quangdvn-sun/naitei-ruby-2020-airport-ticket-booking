@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       namespace :customers do
         resources :flights, only: :create
         resources :bookings, only: %i(index create)
+        scope :bookings do
+          get "/search", to: "search_bookings#index"
+        end
       end
       post "/signup", to: "customers#create"
       resources :customers, only: :update
