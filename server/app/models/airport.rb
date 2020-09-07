@@ -6,4 +6,7 @@ class Airport < ApplicationRecord
     foreign_key: :arrive_id, dependent: :destroy
   has_many :departure_to, through: :departure_flight_routes, source: :arrive
   has_many :arrive_from, through: :arrive_flight_routes, source: :departure
+
+  delegate :name, to: :location, prefix: true
+  delegate :sub_name, to: :location, prefix: true
 end
