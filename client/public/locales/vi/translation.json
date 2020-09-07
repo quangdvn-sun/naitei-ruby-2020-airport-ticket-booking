@@ -103,11 +103,25 @@
     }
   },
   "validations": {
-    "fullName": "Quý khách vui lòng điền họ tên đầy đủ của mình.",
+    "fullName": {
+      "min": "Mật khẩu phải chứa ít nhất 5 kí tự.",
+      "exist": "Quý khách vui lòng điền họ tên đầy đủ của mình."
+    },
     "email": "Quý khách vui lòng điền địa chỉ Email của mình.",
+    "password": {
+      "min": "Mật khẩu phải chứa ít nhất 6 kí tự.",
+      "exist": "Vui lòng nhập 1 mật khẩu hợp lệ."
+    },
+    "confirmPassword": "Mật khẩu xác nhận phải khớp với mật khẩu.",
     "phoneNumber": {
       "format": "Số điện thoại không đúng định dạng.",
       "exist": "Quý khách vui lòng điền số điện thoại của mình."
+    },
+    "address": "Quý khách vui lòng điền địa chỉ hiện tại của mình.",
+    "age": {
+      "integer": "Tuổi phải là số nguyên.",
+      "positive": "Tuổi phải lớn hơn 0.",
+      "exist": "Quý khách vui lòng điền tuổi của mình."
     },
     "passengerName": "Quý khách vui lòng điền một tên hành khách hợp lệ.",
     "dateOfBirth": "Quý khách vui lòng điền hoặc chọn một ngày tháng năm sinh hợp lệ.",
@@ -116,9 +130,25 @@
   "logIn": {
     "title": "Đăng nhập",
     "email": "Email",
-    "password": "Mật khẩu"
+    "password": "Mật khẩu",
+    "emailPlaceholder": "Nhập email của bạn",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn"
   },
   "signUp": {
-    "title": "Đăng ký"
+    "title": "Đăng ký",
+    "fullName": "Họ và tên",
+    "fullNamePlaceholder": "Nhập tên của bạn",
+    "email": "Email",
+    "emailPlaceholder": "Nhập email của bạn",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "Nhập mật khẩu của bạn",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "confirmPlaceholder": "Xác nhận mật khẩu của bạn",
+    "phone": "Số điện thoại",
+    "phonePlaceholder": "Nhập số điện thoại của bạn",
+    "address": "Địa chỉ",
+    "addressPlaceholder": "Nhập địa chỉ của bạn",
+    "age": "Tuổi",
+    "agePlaceholder": "Nhập tuổi của bạn"
   }
 }

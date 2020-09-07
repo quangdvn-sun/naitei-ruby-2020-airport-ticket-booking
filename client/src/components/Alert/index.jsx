@@ -13,7 +13,7 @@ const Message = ({ text, type }) => {
     <div className="toastMessage">
       <FontAwesomeIcon
         className="icon"
-        icon={type == 'error' ? faExclamationCircle : faCheck}
+        icon={type === 'error' ? faExclamationCircle : faCheck}
       />
       <span className="text">{text}</span>
     </div>

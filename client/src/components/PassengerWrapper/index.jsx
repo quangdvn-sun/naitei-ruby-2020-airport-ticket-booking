@@ -39,19 +39,20 @@ const PassengerWrapper = ({
 
   const validationSchema = Yup.object().shape({
     customer: Yup.object().shape({
-      fullName: Yup.string().required(t('validations.fullName')),
+      fullName: Yup.string().required(t('validations.fullName.exist')),
       email: Yup.string()
         .label('Email')
         .email()
         .trim()
         .required(t('validations.email')),
       phone: Yup.string()
+        .trim()
         .matches(/^[0-9]{7,11}$/, t('validations.phoneNumber.format'))
         .required(t('validations.phoneNumber.exist')),
     }),
     passengers: Yup.array().of(
       Yup.object().shape({
-        fullName: Yup.string().required(t('validations.passengerName')),
+        fullName: Yup.string().trim().required(t('validations.passengerName')),
         dateOfBirth: Yup.string().required(t('validations.dateOfBirth')),
         country: Yup.string().required(t('validations.country')),
         luggage: Yup.boolean(),
@@ -65,7 +66,6 @@ const PassengerWrapper = ({
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      isInitialValid={false}
       onSubmit={({ customer, passengers }, actions) => {
         const details = {
           booking_user: {
@@ -105,7 +105,7 @@ const PassengerWrapper = ({
 
         const handleFormChanged = event => {
           handleChange(event);
-          proceedSecondStep(isValid);
+          proceedSecondStep(isValid && values.customer.email);
         };
         return (
           <Col className="passengerWrapper" xs="9">

@@ -105,11 +105,25 @@
     }
   },
   "validations": {
-    "fullName": "Please enter your full name.",
+    "fullName": {
+      "min": "Name must contains at least 5 characters.",
+      "exist": "Please enter your full name."
+    },
     "email": "Please enter your email.",
+    "password": {
+      "min": "Password must contains at least 6 characters.",
+      "exist": "Please enter a valid password."
+    },
+    "confirmPassword": "Password confirmation must match password.",
     "phoneNumber": {
       "format": "Phone number is not in correct format.",
       "exist": "Please enter your phone number."
+    },
+    "address": "Please enter your address.",
+    "age": {
+      "integer": "Age must be a number.",
+      "positive": "Age must be greater than 0.",
+      "exist": "Please enter your age."
     },
     "passengerName": "Please enter a valid name.",
     "dateOfBirth": "Please enter or choose a valid date of birth.",
@@ -118,9 +132,25 @@
   "logIn": {
     "title": "Log In",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password"
   },
   "signUp": {
-    "title": "Sign Up"
+    "title": "Sign Up",
+    "fullName": "Full name",
+    "fullNamePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "confirmPassword": "Confirm password",
+    "confirmPlaceholder": "Confirm your password",
+    "phone": "Phone number",
+    "phonePlaceholder": "Enter your phone number",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address",
+    "age": "Age",
+    "agePlaceholder": "Enter your age"
   }
 }
