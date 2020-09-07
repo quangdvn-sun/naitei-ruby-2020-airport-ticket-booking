@@ -1,0 +1,15 @@
+@import '../../../assets/stylesheets/variables';
+
+.profileForm {
+  .form-input {
+    color: $gray-dark;
+  }
+  ::placeholder {
+    color: $gray-medium;
+    font-size: 0.9em;
+  }
+  .required:after {
+    content: ' *';
+    color: crimson;
+  }
+}

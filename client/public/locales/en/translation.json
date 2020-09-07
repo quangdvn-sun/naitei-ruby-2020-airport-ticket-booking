@@ -3,6 +3,8 @@
     "languages": "Languages",
     "help": "Help",
     "signin": "Sign In",
+    "signOut": "Sign Out",
+    "profile": "Profile",
     "eng": "English",
     "viet": "Vietnamese",
     "welcome": "Welcome,"
@@ -152,5 +154,23 @@
     "addressPlaceholder": "Enter your address",
     "age": "Age",
     "agePlaceholder": "Enter your age"
+  },
+  "profilePage": {
+    "basicInfo": "Basic info",
+    "bookingHistory": "Booking history"
+  },
+  "editProfile": {
+    "title": "Edit your info",
+    "fullName": "Full name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email address",
+    "emailPlaceholder": "Enter your email",
+    "phone": "Phone number",
+    "phonePlaceholder": "Enter your phone number",
+    "address": "Address",
+    "addressPlaceholder": "Enter your address",
+    "age": "Age",
+    "agePlaceholder": "Enter your age",
+    "update": "Update your info"
   }
 }

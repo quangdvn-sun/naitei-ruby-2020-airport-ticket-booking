@@ -3,6 +3,8 @@ import {
   LOG_IN_ERROR,
   SIGN_UP_SUCCESS,
   SIGN_UP_ERROR,
+  UPDATE_INFO_SUCCESS,
+  UPDATE_INFO_ERROR,
   CLEAR_ERROR_MESSAGE,
   SIGN_OUT,
   GET_INFO,
@@ -73,6 +75,22 @@ export const signOut = () => dispatch => {
     notifySuccess('Goodbye ..');
   } catch (err) {
     notifyError(err.response.data.message);
+  }
+};
+
+export const updateInfo = updateData => async dispatch => {
+  console.log(updateData);
+  try {
+    const { data } = await railsApi.put(
+      `/customers/${updateData.id}`,
+      updateData,
+      reqConfig()
+    );
+
+    dispatch({ type: GET_INFO, payload: data.customer });
+    notifySuccess('Update successful !!');
+  } catch (err) {
+    notifyError('Something went wrong ..');
   }
 };
 

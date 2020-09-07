@@ -48,10 +48,12 @@ const Header = () => {
           {t('header.welcome')} {`${user.full_name}`}
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem>Profile</DropdownItem>
+          <Link className="profileLink" to="/profile">
+            <DropdownItem>{t('header.profile')}</DropdownItem>
+          </Link>
           <DropdownItem divider />
           <DropdownItem onClick={() => dispatch(signOut())}>
-            Sign Out
+            {t('header.signOut')}
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>

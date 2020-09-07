@@ -10,6 +10,11 @@
   }
 }
 
+.profileLink, .profileLink:hover {
+  color: $dark-text;
+  text-decoration: none;
+}
+
 .auth-link {
   cursor: pointer;
 }
