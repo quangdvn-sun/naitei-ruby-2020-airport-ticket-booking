@@ -170,5 +170,21 @@
     "age": "Tuổi",
     "agePlaceholder": "Nhập tuổi của bạn",
     "update": "Cập nhật thông tin"
+  },
+  "bookingHistory": {
+    "title": "Lịch sử đặt vé",
+    "fullName": "Họ và tên",
+    "dateOfBirth": "Ngày sinh",
+    "nation": "Quốc tịch",
+    "plane": "Tên máy bay",
+    "departureDay": "Ngày xuất phát",
+    "fromTo": "Từ / đến",
+    "ticketPrice": "Giá vé",
+    "seatType": "Loại ghế",
+    "seatNumber": "Số ghế",
+    "status": "Trạng thái",
+    "from": "Từ",
+    "to": "Đến",
+    "all": "Tất cả"
   }
 }

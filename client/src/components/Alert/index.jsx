@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col } from 'reactstrap';
 import { ToastContainer } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,13 +11,17 @@ import './styles.scss';
 
 const Message = ({ text, type }) => {
   return (
-    <div className="toastMessage">
-      <FontAwesomeIcon
-        className="icon"
-        icon={type === 'error' ? faExclamationCircle : faCheck}
-      />
-      <span className="text">{text}</span>
-    </div>
+    <Row className="toastMessage">
+      <Col xs="2">
+        <FontAwesomeIcon
+          className="icon"
+          icon={type === 'error' ? faExclamationCircle : faCheck}
+        />
+      </Col>
+      <Col xs="10" className="text">
+        {text}
+      </Col>
+    </Row>
   );
 };
 

@@ -172,5 +172,21 @@
     "age": "Age",
     "agePlaceholder": "Enter your age",
     "update": "Update your info"
+  },
+  "bookingHistory": {
+    "title": "Booking history",
+    "fullName": "Full name",
+    "dateOfBirth": "Date of birth",
+    "nation": "Nationality",
+    "plane": "Plane name",
+    "departureDay": "Departure day",
+    "fromTo": "From / To",
+    "from": "From",
+    "to": "To",
+    "ticketPrice": "Ticket price",
+    "seatType": "Seat type",
+    "seatNumber": "Seat number",
+    "status": "Status",
+    "all": "All"
   }
 }

@@ -33,7 +33,7 @@ export const setPaymentMethod = ({ method, customer_id }) => (
 
 export const postBookingDetails = details => async dispatch => {
   try {
-    const { data } = await railsApi.post('/bookings', details);
+    const { data } = await railsApi.post('/customers/bookings', details);
     history.push('/');
     notifySuccess('Booking successful!');
     return Promise.resolve(data);
