@@ -3,16 +3,15 @@
   position: relative;
   bottom: 0.25em;
   color: white;
+  padding-left: 0.4em;
   
   .icon {
     font-size: 2em;
-    margin: 0 0.6em 0 0.4em;
-    vertical-align: text-top;
+    padding-right: 0.2em;
   }
   .text {
-    position: relative;
+    padding: 0 0.1em;
     font-size: 0.9em;
-    bottom: 0.2em;
     font-weight: 600;
   }
 }

@@ -35,6 +35,9 @@ class Booking < ApplicationRecord
   scope :is_pending, ->{where booking_status: Settings.bookings.pending}
   scope :is_success, ->{where booking_status: Settings.bookings.success}
 
+  ransack_alias :departure_location, :flight_flight_route_departure_location_sub_name
+  ransack_alias :arrive_location, :flight_flight_route_arrive_location_sub_name
+
   before_create :increase_reserved_seat
   before_destroy :decrease_reserved_seat
 

@@ -11,8 +11,8 @@ class Api::V1::Customers::SearchBookingsController < ApiController
   def search_params
     Hash.new.tap do |q|
       q[:booking_status_name_eq] = params[:booking_status].presence
-      q[:flight_flight_route_departure_location_sub_name_eq] = params[:departure].presence
-      q[:flight_flight_route_arrive_location_sub_name_eq] = params[:arrive].presence
+      q[:departure_location_eq] = params[:departure].presence
+      q[:arrive_location_eq] = params[:arrive].presence
     end
   end
 end
